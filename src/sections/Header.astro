@@ -1,0 +1,389 @@
+---
+import logoHorizontal from "../assets/logo/logo.png";
+import { languages, getCurrentLanguage, getLocalizedPath, getBasePath, useTranslations } from "../i18n";
+
+// Detectar idioma desde la URL
+const currentLang = getCurrentLanguage(Astro);
+const basePath = getBasePath(Astro.url.pathname);
+const t = useTranslations(currentLang);
+
+// Función helper para obtener rutas localizadas
+const getPath = (path: string) => getLocalizedPath(path, currentLang);
+
+const menu = [
+  {
+    label: t('nav.productos'),
+    href: getPath("/products"),
+    children: [
+      {
+        label: t('submenu.productos.aretes'),
+        href: getPath("/products?category=aretes#aretes"),
+      },
+      {
+        label: t('submenu.productos.anillos'),
+        href: getPath("/products?category=anillos#anillos"),
+      },
+      {
+        label: t('submenu.productos.collares'),
+        href: getPath("/products?category=collares#collares"),
+      },
+      {
+        label: t('submenu.productos.pulseras'),
+        href: getPath("/products?category=pulseras#pulseras"),
+      },
+    ],
+  },
+  {
+    label: t('nav.eventos'),
+    href: getPath("/eterno-compromiso"),
+    children: [
+      { label: t('submenu.eventos.eternoCompromiso'), href: getPath("/eterno-compromiso") },
+      { label: t('submenu.eventos.bodas'), href: getPath(currentLang === 'en' ? "/events/bodas" : "/eventos/bodas") },
+      { label: t('submenu.eventos.compromiso'), href: getPath(currentLang === 'en' ? "/events/compromiso" : "/eventos/compromiso") },
+      { label: t('submenu.eventos.aniversarios'), href: getPath(currentLang === 'en' ? "/events/aniversarios" : "/eventos/aniversarios") },
+    ],
+  },
+  {
+    label: t('nav.nosotros'),
+    href: getPath(currentLang === 'en' ? "/about" : "/about"),
+    children: [
+      { label: t('submenu.nosotros.historia'), href: getPath(currentLang === 'en' ? "/about" : "/nosotros") },
+      { label: t('submenu.nosotros.talleres'), href: getPath(currentLang === 'en' ? "/about#talleres" : "/nosotros#talleres") },
+    ],
+  },
+  {
+    label: t('nav.blog'),
+    href: getPath("/blog"),
+    children: [],
+  },
+  {
+    label: t('nav.contacto'),
+    href: getPath("/contact"),
+    children: [],
+  },
+];
+
+// Detectar si estamos en la página de inicio
+const isHomePage = basePath === '/';
+---
+
+<header class="fixed top-0 inset-x-0 z-50 bg-[#5D2409]/95 backdrop-blur">
+  <!-- Desktop: Logo arriba centrado, Menú abajo centrado -->
+  <div class="hidden md:block">
+    <!-- Logo centrado arriba con selector de idioma -->
+    <div class="flex justify-center items-center py-4 relative">
+      <a href={getPath("/")} class="flex items-center">
+        <img
+          src={logoHorizontal.src}
+          alt="ORO INCA Joyería"
+          class="h-12 md:h-16 object-contain"
+        />
+      </a>
+      <!-- Selector de idioma - Desktop -->
+      <div class="absolute right-6 top-1/2 -translate-y-1/2">
+        <div class="relative group">
+          <button
+            id="lang-toggle-desktop"
+            class="flex items-center gap-2 px-3 py-2 rounded-md bg-white/10 hover:bg-white/20 transition-colors text-white text-sm"
+            aria-label="Cambiar idioma"
+          >
+            <span class="text-xl">{languages.find(l => l.code === currentLang)?.flag || '🇪🇸'}</span>
+            <span class="hidden lg:inline">{currentLang.toUpperCase()}</span>
+            <svg class="w-4 h-4 opacity-70 group-hover:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div
+            id="lang-dropdown-desktop"
+            class="absolute right-0 mt-2 w-40 rounded-md bg-white text-gray-800 shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50"
+          >
+            {languages.map((lang) => (
+              <button
+                data-lang={lang.code}
+                class={`lang-option w-full text-left px-4 py-3 hover:bg-gray-100 transition flex items-center gap-2 ${
+                  currentLang === lang.code ? 'bg-gray-50 font-semibold' : ''
+                }`}
+              >
+                <span class="text-xl">{lang.flag}</span>
+                <span>{lang.name}</span>
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Menú centrado abajo -->
+    <nav class="max-w-7xl mx-auto px-6 pb-4">
+      <ul class="flex items-center justify-center gap-8 text-sm text-white/90">
+        {!isHomePage && (
+          <li>
+            <a href={getPath("/")} class="hover:text-[#EF9210] transition">
+              {t('nav.inicio')}
+            </a>
+          </li>
+        )}
+
+        {menu.map(item => (
+          <li class="relative group">
+            <!-- ITEM -->
+            <a
+              href={item.href}
+              class="flex items-center gap-1 hover:text-[#EF9210] transition"
+            >
+              {item.label}
+              {item.children.length > 0 && (
+                <svg
+                  class="w-4 h-4 opacity-70 group-hover:rotate-180 transition"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              )}
+            </a>
+
+            <!-- DROPDOWN (solo si hay children) -->
+            {item.children.length > 0 && (
+              <ul
+                class="absolute left-1/2 -translate-x-1/2 mt-4 w-48 rounded-md bg-white text-gray-800 shadow-lg opacity-0 invisible
+                       group-hover:opacity-100 group-hover:visible transition-all duration-200"
+              >
+                {item.children.map(sub => (
+                  <li>
+                    <a
+                      href={sub.href}
+                      class="block px-4 py-3 hover:bg-gray-100 hover:text-[#EF9210] transition"
+                    >
+                      {sub.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </li>
+        ))}
+      </ul>
+    </nav>
+  </div>
+
+  <!-- Mobile: Logo izquierda, Menú hamburguesa derecha -->
+  <nav class="md:hidden max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+    <!-- LOGO IZQUIERDA -->
+    <a href={getPath("/")} class="flex items-center">
+      <img
+        src={logoHorizontal.src}
+        alt="ORO INCA Joyería"
+        class="h-10 object-contain"
+      />
+    </a>
+
+    <!-- MOBILE RIGHT SECTION: Idioma + Menú -->
+    <div class="flex items-center gap-3">
+      <!-- Selector de idioma móvil -->
+      <div class="relative">
+        <button
+          id="lang-toggle-mobile"
+          class="text-white text-xl p-2"
+          aria-label="Cambiar idioma"
+        >
+          {languages.find(l => l.code === currentLang)?.flag || '🇪🇸'}
+        </button>
+        <div
+          id="lang-dropdown-mobile"
+          class="absolute right-0 mt-2 w-40 rounded-md bg-white text-gray-800 shadow-lg hidden z-50"
+        >
+          {languages.map((lang) => (
+            <button
+              data-lang={lang.code}
+              class={`lang-option w-full text-left px-4 py-3 hover:bg-gray-100 transition flex items-center gap-2 ${
+                currentLang === lang.code ? 'bg-gray-50 font-semibold' : ''
+              }`}
+            >
+              <span class="text-xl">{lang.flag}</span>
+              <span>{lang.name}</span>
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <!-- MOBILE BUTTON -->
+      <button
+        id="menuBtn"
+        class="text-white"
+        aria-label="Abrir menú"
+      >
+        <!-- SVG MENU -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24"
+          fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 6l16 0" />
+          <path d="M4 12l16 0" />
+          <path d="M4 18l16 0" />
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div
+    id="mobileMenu"
+    class="md:hidden hidden bg-[#5D2409] border-t border-white/10"
+  >
+    <ul class="px-6 py-6 space-y-4 text-white/90">
+
+      {!isHomePage && (
+        <li>
+          <a href={getPath("/")} class="block">
+            {t('nav.inicio')}
+          </a>
+        </li>
+      )}
+
+      {menu.map(item => (
+        <li>
+          {item.children.length > 0 ? (
+            <>
+              <div class="flex items-center justify-between">
+                <a href={item.href} class="flex-1 text-left py-2">{item.label}</a>
+                <button
+                  type="button"
+                  class="mobile-submenu-toggle p-2 text-white/80 hover:text-white transition-transform"
+                  data-target={`submenu-${item.label.toLowerCase().replace(/\s+/g, '-')}`}
+                  aria-label="Expandir submenú"
+                >
+                  <svg class="w-5 h-5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+              </div>
+
+              <ul 
+                id={`submenu-${item.label.toLowerCase().replace(/\s+/g, '-')}`}
+                class="ml-4 mt-2 space-y-2 hidden text-sm text-white/80"
+              >
+                {item.children.map(sub => (
+                  <li>
+                    <a href={sub.href} class="block py-2 hover:text-[#EF9210] transition">
+                      {sub.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </>
+          ) : (
+            <a href={item.href} class="block py-2">
+              {item.label}
+            </a>
+          )}
+        </li>
+      ))}
+
+    </ul>
+  </div>
+</header>
+
+<!-- ESPACIADOR -->
+<div class="h-20 md:h-32"></div>
+
+<script>
+  const btn = document.getElementById("menuBtn");
+  const menu = document.getElementById("mobileMenu");
+
+  btn?.addEventListener("click", () => {
+    menu?.classList.toggle("hidden");
+  });
+
+  // Manejar submenús móviles
+  const submenuToggles = document.querySelectorAll(".mobile-submenu-toggle");
+  submenuToggles.forEach(toggle => {
+    toggle.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const targetId = toggle.getAttribute("data-target");
+      const submenu = document.getElementById(targetId || "");
+      const icon = toggle.querySelector("svg");
+      
+      if (submenu) {
+        submenu.classList.toggle("hidden");
+        if (icon) {
+          icon.classList.toggle("rotate-180");
+        }
+      }
+    });
+  });
+
+  // CERRAR MENÚ AL HACER CLICK EN CUALQUIER LINK (solo enlaces de submenú)
+  menu?.querySelectorAll("ul li a").forEach(link => {
+    link.addEventListener("click", () => {
+      menu.classList.add("hidden");
+    });
+  });
+
+  // Manejar selector de idioma - Desktop
+  const langToggleDesktop = document.getElementById("lang-toggle-desktop");
+  const langDropdownDesktop = document.getElementById("lang-dropdown-desktop");
+  
+  langToggleDesktop?.addEventListener("click", (e) => {
+    e.stopPropagation();
+    langDropdownDesktop?.classList.toggle("opacity-0");
+    langDropdownDesktop?.classList.toggle("invisible");
+    langDropdownDesktop?.classList.toggle("opacity-100");
+    langDropdownDesktop?.classList.toggle("visible");
+  });
+
+  // Manejar selector de idioma - Mobile
+  const langToggleMobile = document.getElementById("lang-toggle-mobile");
+  const langDropdownMobile = document.getElementById("lang-dropdown-mobile");
+  
+  langToggleMobile?.addEventListener("click", (e) => {
+    e.stopPropagation();
+    langDropdownMobile?.classList.toggle("hidden");
+  });
+
+  // Cerrar dropdowns al hacer click fuera
+  document.addEventListener("click", () => {
+    langDropdownDesktop?.classList.add("opacity-0", "invisible");
+    langDropdownDesktop?.classList.remove("opacity-100", "visible");
+    langDropdownMobile?.classList.add("hidden");
+  });
+
+  // Manejar cambio de idioma - cambiar ruta preservando página actual
+  document.querySelectorAll(".lang-option").forEach(option => {
+    option.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const newLang = (e.currentTarget as HTMLElement).getAttribute("data-lang");
+      if (newLang) {
+        let currentPath = window.location.pathname;
+        let newPath = '';
+        
+        if (newLang === 'en') {
+          // Cambiar a inglés: agregar /en al inicio
+          if (currentPath.startsWith('/en')) {
+            // Ya está en inglés, no hacer nada
+            return;
+          }
+          // Convertir /eventos/ a /events/ para inglés
+          currentPath = currentPath.replace('/eventos/', '/events/');
+          newPath = '/en' + (currentPath === '/' ? '' : currentPath);
+        } else {
+          // Cambiar a español: quitar /en y convertir /events/ a /eventos/
+          if (currentPath.startsWith('/en')) {
+            currentPath = currentPath.replace('/en', '') || '/';
+            // Convertir /events/ a /eventos/ para español
+            currentPath = currentPath.replace('/events/', '/eventos/');
+            newPath = currentPath;
+          } else {
+            // Ya está en español, no hacer nada
+            return;
+          }
+        }
+        
+        // Preservar query params y hash
+        const search = window.location.search;
+        const hash = window.location.hash;
+        window.location.href = newPath + search + hash;
+      }
+    });
+  });
+</script>

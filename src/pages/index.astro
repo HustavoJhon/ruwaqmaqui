@@ -1,11 +1,211 @@
 ---
-import Card from '@components/Card.astro'
-import Layout from '@layouts/Layout.astro'
+import "../styles/global.css";
+import Header from "../sections/Header.astro";
+import Hero from "../sections/Hero.astro";
+import Categories from "../sections/Categories.astro";
+import FeaturedProducts from "../sections/FeaturedProducts.astro";
+import Collections from "../sections/Collections.astro";
+import WhyChooseUs from "../sections/WhyChooseUs.astro";
+import Testimonials from "../sections/Testimonials.astro";
+import Promotions from "../sections/Promotions.astro";
+import Footer from "../sections/Footer.astro";
+import ProductsCarousel from "../sections/ProductsCarousel.astro";
+import SEO from "../components/SEO.astro";
+import { getCurrentLanguage } from "../i18n";
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+// Detectar idioma desde URL
+const currentLang = getCurrentLanguage(Astro);
+const htmlLang = currentLang === 'en' ? 'en' : 'es-PE';
 ---
 
-<Layout>
-  <Card />
-</Layout>
+<!doctype html>
+<html lang={htmlLang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="google-site-verification"
+      content="HFY4hbNLPDFqWNVTI119L5TEeT-tIjjgs398kHZHGcI"
+    />
+    <SEO
+      title={currentLang === 'en' 
+        ? "ORO INCA Jewelry | Buy Gold and Silver Jewelry in Peru - National Shipping"
+        : "ORO INCA Joyería | Comprar Joyas de Oro y Plata en Perú - Envío Nacional"}
+      description={currentLang === 'en'
+        ? "Buy 18k gold and 925 silver jewelry at ORO INCA Jewelry Peru. Engagement rings, earrings, necklaces, bracelets and chains with guarantee. Free shipping to Lima, Cusco, Arequipa. ✓ Affordable prices ✓ Exclusive designs"
+        : "Compra joyas de oro 18k y plata 925 en ORO INCA Joyería Perú. Anillos de compromiso, aretes, collares, pulseras y cadenas con garantía. Envío gratis a Lima, Cusco, Arequipa. ✓ Precios accesibles ✓ Diseños exclusivos"}
+      canonical="/"
+      keywords={currentLang === 'en'
+        ? "jewelry Peru, gold jewelry, silver jewelry, engagement rings, gold earrings, silver necklaces, bracelets Peru, online jewelry Lima, 18k gold Peru"
+        : "joyería Perú, joyas de oro, joyas de plata, anillos de compromiso, aretes de oro, collares de plata, pulseras Perú, joyería online Lima, oro 18k Perú"}
+      lang={currentLang}
+      structuredData={{
+        "@context": "https://schema.org",
+        "@type": "JewelryStore",
+        "name": "ORO INCA Joyería",
+        "description": "Tienda online de joyas de oro y plata en Perú con envíos a nivel nacional",
+        "url": "https://oro-inca-joyeria.vercel.app/",
+        "logo": "https://oro-inca-joyeria.vercel.app/assets/img/logo.png",
+        "image": "https://oro-inca-joyeria.vercel.app/assets/img/og-image.jpg",
+        "priceRange": "$$",
+        "address": {
+          "@type": "PostalAddress",
+          "addressCountry": "PE",
+          "addressLocality": "Lima"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": "-12.046374",
+          "longitude": "-77.042793"
+        },
+        "areaServed": {
+          "@type": "Country",
+          "name": "Perú"
+        },
+        "currenciesAccepted": "PEN",
+        "paymentAccepted": "Tarjeta de crédito, débito, transferencia bancaria",
+        "openingHours": "Mo-Sa 09:00-20:00",
+        "telephone": "+51-XXX-XXX-XXX"
+      }}
+    />
+
+    <!-- Preconnect para mejorar velocidad -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Favicon optimizado -->
+     <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+
+    <!-- Open Graph mejorado -->
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:title"
+      content="ORO INCA Joyería | Joyas de Oro y Plata en Perú - Envío Nacional"
+    />
+    <meta
+      property="og:description"
+      content="Compra joyas de oro 18k y plata 925 en ORO INCA Joyería. Anillos, aretes, collares y pulseras con diseños exclusivos. Envío gratis a todo Perú. Precios accesibles y garantía."
+    />
+    <meta property="og:url" content="https://oro-inca-joyeria.vercel.app/" />
+    <meta
+      property="og:image"
+      content="https://oro-inca-joyeria.vercel.app/assets/img/og-image.jpg"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="ORO INCA Joyería - Joyas de Oro y Plata en Perú"
+    />
+    <meta property="og:site_name" content="ORO INCA Joyería" />
+    <meta property="og:locale" content="es_PE" />
+
+    <!-- Twitter Cards mejorado -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="ORO INCA Joyería | Joyas de Oro y Plata en Perú"
+    />
+    <meta
+      name="twitter:description"
+      content="Compra joyas de oro 18k y plata 925. Anillos, aretes, collares con envío gratis a todo Perú."
+    />
+    <meta
+      name="twitter:image"
+      content="https://oro-inca-joyeria.vercel.app/assets/img/og-image.jpg"
+    />
+    <meta
+      name="twitter:image:alt"
+      content="ORO INCA Joyería - Colección de joyas"
+    />
+    <meta name="twitter:site" content="@oro_incajoyeria" />
+    <meta name="twitter:creator" content="@oro_incajoyeria" />
+
+    <!-- Schema.org para SEO local -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "JewelryStore",
+        "name": "ORO INCA Joyería",
+        "description": "Tienda online de joyas de oro y plata en Perú con envíos a nivel nacional",
+        "url": "https://oro-inca-joyeria.vercel.app/",
+        "logo": "https://oro-inca-joyeria.vercel.app/assets/img/logo.png",
+        "image": "https://oro-inca-joyeria.vercel.app/assets/img/og-image.jpg",
+        "priceRange": "$$",
+        "address": {
+          "@type": "PostalAddress",
+          "addressCountry": "PE",
+          "addressLocality": "Lima"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": "-12.046374",
+          "longitude": "-77.042793"
+        },
+        "areaServed": {
+          "@type": "Country",
+          "name": "Perú"
+        },
+        "currenciesAccepted": "PEN",
+        "paymentAccepted": "Tarjeta de crédito, débito, transferencia bancaria",
+        "openingHours": "Mo-Sa 09:00-20:00",
+        "telephone": "+51-XXX-XXX-XXX"
+      }
+    </script>
+
+    <!-- Schema.org para organización -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "ORO INCA Joyería",
+        "url": "https://oro-inca-joyeria.vercel.app/",
+        "logo": "https://oro-inca-joyeria.vercel.app/assets/img/logo.png",
+        "sameAs": [
+          "https://www.facebook.com/oroincajoyeria",
+          "https://www.instagram.com/oroincajoyeria",
+          "https://twitter.com/oro_incajoyeria"
+        ],
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+51-XXX-XXX-XXX",
+          "contactType": "Customer Service",
+          "areaServed": "PE",
+          "availableLanguage": "Spanish"
+        }
+      }
+    </script>
+
+    <!-- Breadcrumb Schema -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Inicio",
+            "item": "https://oro-inca-joyeria.vercel.app/"
+          }
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <Header />
+    <main>
+      <Hero lang={currentLang} />
+      <Categories lang={currentLang} />
+      <FeaturedProducts lang={currentLang} />
+      <Collections lang={currentLang} />
+      <WhyChooseUs lang={currentLang} />
+      <Testimonials lang={currentLang} />
+      <Promotions lang={currentLang} />
+    </main>
+    <Footer />
+  </body>
+</html>

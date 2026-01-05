@@ -1,0 +1,478 @@
+---
+import Layout from "../layouts/Layout.astro";
+import SEO from "../components/SEO.astro";
+---
+
+<Layout>
+  <SEO
+    title="Nosotros | ORO INCA Joyería - Nuestra Historia"
+    description="Conoce la historia de ORO INCA Joyería. Creamos joyas inspiradas en la cultura ancestral andina con materiales de alta calidad y diseño contemporáneo."
+    canonical="/about"
+    keywords="joyería artesanal, historia ORO INCA, talleres artesanales, joyas andinas, joyería peruana"
+    structuredData={{
+      "@context": "https://schema.org",
+      "@type": "AboutPage",
+      name: "Nosotros - ORO INCA Joyería",
+      description: "Historia y talleres de ORO INCA Joyería",
+      url: "https://oro-inca-joyeria.vercel.app/about",
+    }}
+  />
+
+  <!-- =========================
+          HERO SECTION
+    ========================= -->
+  <section
+    class="pt-32 pb-16 bg-gradient-to-b from-white to-gray-50 about-hero"
+  >
+    <div class="max-w-5xl mx-auto px-6 text-center">
+      <div class="inline-block mb-6">
+        <span
+          class="px-6 py-2 bg-gradient-to-r from-[#D4AF37]/10 to-[#D4AF37]/5 text-[#16273B] rounded-full text-sm font-semibold uppercase tracking-wider border border-[#D4AF37]/20"
+        >
+          Nuestra Esencia
+        </span>
+      </div>
+      <h1
+        class="text-5xl md:text-7xl font-bold text-[#16273B] mb-6 leading-tight"
+      >
+        Nuestra Historia
+      </h1>
+      <div
+        class="w-24 h-1 bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent mx-auto mb-8"
+      >
+      </div>
+      <p
+        class="text-2xl text-[#16273B]/70 font-light max-w-3xl mx-auto leading-relaxed"
+      >
+        Joyería inspirada en la cultura ancestral andina
+      </p>
+    </div>
+  </section>
+
+  <!-- =========================
+          NUESTRA HISTORIA - CONTENIDO
+    ========================= -->
+  <section class="py-20 bg-white">
+    <div class="max-w-4xl mx-auto px-6">
+      <div
+        class="space-y-8 text-[#16273B]/80 text-lg leading-relaxed storia-content"
+      >
+        <div
+          class="bg-gradient-to-br from-[#D4AF37]/5 to-transparent p-10 rounded-2xl border-l-4 border-[#D4AF37]"
+        >
+          <p class="text-xl">
+            En <span class="font-bold text-[#D4AF37]">ORO INCA</span> creamos joyas
+            que representan identidad, tradición y elegancia atemporal.
+          </p>
+        </div>
+
+        <p class="text-xl">
+          Cada pieza está diseñada con <span
+            class="font-semibold text-[#16273B]"
+            >materiales de alta calidad</span
+          >
+          y un profundo respeto por nuestras raíces, fusionando el legado ancestral
+          con el diseño contemporáneo.
+        </p>
+
+        <div class="grid md:grid-cols-3 gap-6 pt-8">
+          <div
+            class="text-center p-6 bg-gradient-to-br from-[#16273B]/5 to-transparent rounded-2xl"
+          >
+            <div class="text-5xl mb-4">🏔️</div>
+            <h3 class="font-bold text-[#16273B] mb-2">Raíces Andinas</h3>
+            <p class="text-sm text-[#16273B]/60">
+              Inspirados en la rica cultura inca
+            </p>
+          </div>
+          <div
+            class="text-center p-6 bg-gradient-to-br from-[#D4AF37]/5 to-transparent rounded-2xl"
+          >
+            <div class="text-5xl mb-4">✨</div>
+            <h3 class="font-bold text-[#16273B] mb-2">Artesanía Fina</h3>
+            <p class="text-sm text-[#16273B]/60">Cada detalle hecho a mano</p>
+          </div>
+          <div
+            class="text-center p-6 bg-gradient-to-br from-[#16273B]/5 to-transparent rounded-2xl"
+          >
+            <div class="text-5xl mb-4">💎</div>
+            <h3 class="font-bold text-[#16273B] mb-2">Calidad Premium</h3>
+            <p class="text-sm text-[#16273B]/60">Materiales de primera</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================
+          NUESTROS VALORES
+    ========================= -->
+  <section
+    class="py-20 bg-gradient-to-br from-[#16273B] to-[#16273B]/90 text-white relative overflow-hidden"
+  >
+    <!-- Patrón decorativo de fondo -->
+    <div class="absolute inset-0 opacity-5">
+      <div
+        class="absolute top-0 left-0 w-64 h-64 bg-[#D4AF37] rounded-full blur-3xl"
+      >
+      </div>
+      <div
+        class="absolute bottom-0 right-0 w-96 h-96 bg-[#D4AF37] rounded-full blur-3xl"
+      >
+      </div>
+    </div>
+
+    <div class="max-w-6xl mx-auto px-6 relative z-10">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl md:text-5xl font-bold mb-6">Nuestros Valores</h2>
+        <div
+          class="w-24 h-1 bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent mx-auto mb-6"
+        >
+        </div>
+        <p class="text-white/80 text-lg max-w-2xl mx-auto font-light">
+          Los principios que guían cada una de nuestras creaciones
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <!-- Valor 1 -->
+        <div class="text-center values-card">
+          <div
+            class="w-20 h-20 mx-auto mb-6 bg-white/10 backdrop-blur-sm rounded-2xl flex items-center justify-center text-4xl"
+          >
+            🤝
+          </div>
+          <h3 class="text-xl font-bold mb-3">Confianza</h3>
+          <p class="text-white/70 text-sm leading-relaxed">
+            Construimos relaciones duraderas con nuestros clientes
+          </p>
+        </div>
+
+        <!-- Valor 2 -->
+        <div class="text-center values-card">
+          <div
+            class="w-20 h-20 mx-auto mb-6 bg-white/10 backdrop-blur-sm rounded-2xl flex items-center justify-center text-4xl"
+          >
+            🎨
+          </div>
+          <h3 class="text-xl font-bold mb-3">Creatividad</h3>
+          <p class="text-white/70 text-sm leading-relaxed">
+            Innovamos respetando nuestras tradiciones ancestrales
+          </p>
+        </div>
+
+        <!-- Valor 3 -->
+        <div class="text-center values-card">
+          <div
+            class="w-20 h-20 mx-auto mb-6 bg-white/10 backdrop-blur-sm rounded-2xl flex items-center justify-center text-4xl"
+          >
+            ⭐
+          </div>
+          <h3 class="text-xl font-bold mb-3">Excelencia</h3>
+          <p class="text-white/70 text-sm leading-relaxed">
+            Compromiso con la más alta calidad en cada detalle
+          </p>
+        </div>
+
+        <!-- Valor 4 -->
+        <div class="text-center values-card">
+          <div
+            class="w-20 h-20 mx-auto mb-6 bg-white/10 backdrop-blur-sm rounded-2xl flex items-center justify-center text-4xl"
+          >
+            🌿
+          </div>
+          <h3 class="text-xl font-bold mb-3">Autenticidad</h3>
+          <p class="text-white/70 text-sm leading-relaxed">
+            Cada pieza cuenta una historia única y verdadera
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================
+          NUESTROS TALLERES
+    ========================= -->
+  <section id="talleres" class="py-24 bg-white">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-16 talleres-header">
+        <div class="inline-block mb-4">
+          <span
+            class="px-6 py-2 bg-gradient-to-r from-[#D4AF37]/10 to-[#D4AF37]/5 text-[#16273B] rounded-full text-sm font-semibold uppercase tracking-wider border border-[#D4AF37]/20"
+          >
+            Proceso Artesanal
+          </span>
+        </div>
+        <h2 class="text-4xl md:text-5xl font-bold text-[#16273B] mb-6">
+          Nuestros Talleres
+        </h2>
+        <div
+          class="w-24 h-1 bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent mx-auto mb-6"
+        >
+        </div>
+        <p
+          class="text-[#16273B]/70 text-xl max-w-3xl mx-auto font-light leading-relaxed"
+        >
+          Nuestras joyas nacen en talleres donde el conocimiento ancestral y la
+          precisión moderna se unen para crear piezas únicas y duraderas.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8 talleres-grid">
+        <!-- Taller 1 -->
+        <div
+          class="bg-gradient-to-br from-white to-gray-50 rounded-2xl p-10 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:border-[#D4AF37]/30 hover:-translate-y-2 group"
+        >
+          <div
+            class="w-16 h-16 bg-gradient-to-br from-[#D4AF37]/10 to-[#D4AF37]/5 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300"
+          >
+            <span class="text-4xl">🛠️</span>
+          </div>
+          <h3
+            class="text-2xl font-bold text-[#16273B] mb-4 group-hover:text-[#D4AF37] transition-colors"
+          >
+            Taller Artesanal
+          </h3>
+          <p class="text-[#16273B]/70 leading-relaxed">
+            Cada joya es elaborada a mano por artesanos expertos, preservando
+            técnicas tradicionales transmitidas por generaciones.
+          </p>
+          <div class="mt-6 pt-6 border-t border-[#D4AF37]/10">
+            <ul class="space-y-2 text-sm text-[#16273B]/60">
+              <li class="flex items-center gap-2">
+                <span class="text-[#D4AF37]">✓</span> Trabajo manual especializado
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="text-[#D4AF37]">✓</span> Técnicas ancestrales
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="text-[#D4AF37]">✓</span> Artesanos experimentados
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Taller 2 -->
+        <div
+          class="bg-gradient-to-br from-white to-gray-50 rounded-2xl p-10 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:border-[#D4AF37]/30 hover:-translate-y-2 group"
+        >
+          <div
+            class="w-16 h-16 bg-gradient-to-br from-[#D4AF37]/10 to-[#D4AF37]/5 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300"
+          >
+            <span class="text-4xl">✏️</span>
+          </div>
+          <h3
+            class="text-2xl font-bold text-[#16273B] mb-4 group-hover:text-[#D4AF37] transition-colors"
+          >
+            Diseño Personalizado
+          </h3>
+          <p class="text-[#16273B]/70 leading-relaxed">
+            Ofrecemos la posibilidad de crear piezas únicas, adaptadas a la
+            historia, estilo y significado de cada cliente.
+          </p>
+          <div class="mt-6 pt-6 border-t border-[#D4AF37]/10">
+            <ul class="space-y-2 text-sm text-[#16273B]/60">
+              <li class="flex items-center gap-2">
+                <span class="text-[#D4AF37]">✓</span> Consulta personalizada
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="text-[#D4AF37]">✓</span> Diseños exclusivos
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="text-[#D4AF37]">✓</span> Atención al detalle
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Taller 3 -->
+        <div
+          class="bg-gradient-to-br from-white to-gray-50 rounded-2xl p-10 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:border-[#D4AF37]/30 hover:-translate-y-2 group"
+        >
+          <div
+            class="w-16 h-16 bg-gradient-to-br from-[#D4AF37]/10 to-[#D4AF37]/5 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300"
+          >
+            <span class="text-4xl">🔍</span>
+          </div>
+          <h3
+            class="text-2xl font-bold text-[#16273B] mb-4 group-hover:text-[#D4AF37] transition-colors"
+          >
+            Calidad y Detalle
+          </h3>
+          <p class="text-[#16273B]/70 leading-relaxed">
+            Cada pieza pasa por un riguroso proceso de revisión para asegurar
+            acabados impecables y durabilidad.
+          </p>
+          <div class="mt-6 pt-6 border-t border-[#D4AF37]/10">
+            <ul class="space-y-2 text-sm text-[#16273B]/60">
+              <li class="flex items-center gap-2">
+                <span class="text-[#D4AF37]">✓</span> Control de calidad riguroso
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="text-[#D4AF37]">✓</span> Materiales premium
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="text-[#D4AF37]">✓</span> Garantía de durabilidad
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================
+      CALL TO ACTION
+========================= -->
+  <section class="relative overflow-hidden bg-white py-20">
+  <!-- Fondo decorativo dorado -->
+  <div class="absolute inset-0 pointer-events-none">
+    <div class="absolute top-0 right-0 w-96 h-96 rounded-full bg-[#D4AF37]/20 blur-3xl"></div>
+    <div class="absolute bottom-0 left-0 w-72 h-72 rounded-full bg-[#D4AF37]/20 blur-3xl"></div>
+  </div>
+
+  <!-- Contenido -->
+  <div class="relative z-10 mx-auto max-w-4xl px-6 text-center">
+    <h2 class="mb-6 text-4xl font-semibold tracking-tight text-[#16273B] md:text-5xl">
+      ¿Listo para crear tu joya única?
+    </h2>
+
+    <div class="mx-auto mb-8 h-1 w-24 bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent"></div>
+
+    <p class="mx-auto mb-10 max-w-2xl text-lg font-light text-[#16273B]/70 md:text-xl">
+      Contáctanos y comienza el viaje para diseñar una pieza que cuente tu historia.
+    </p>
+
+    <div class="flex flex-col items-center justify-center gap-4 sm:flex-row">
+      <!-- Botón principal -->
+      <a
+        href="/contact"
+        class="inline-flex items-center gap-3 rounded-full bg-[#D4AF37] px-10 py-5 text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:bg-[#b8941f] hover:shadow-xl"
+      >
+        Contáctanos
+        <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M17 8l4 4m0 0l-4 4m4-4H3"
+          />
+        </svg>
+      </a>
+
+      <!-- Botón secundario -->
+      <a
+        href="/products"
+        class="inline-flex items-center gap-3 rounded-full border-2 border-[#16273B] bg-white px-10 py-5 text-lg font-semibold text-[#16273B] shadow-lg transition-all duration-300 hover:-translate-y-1 hover:bg-gray-50 hover:shadow-xl"
+      >
+        Ver productos
+        <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+          />
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+          />
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+</Layout>
+
+<style>
+  /* Animaciones */
+  @keyframes fadeInDown {
+    from {
+      opacity: 0;
+      transform: translateY(-30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes scaleIn {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  .about-hero {
+    animation: fadeInDown 0.6s ease-out;
+  }
+
+  .storia-content {
+    animation: fadeInUp 0.6s ease-out 0.2s both;
+  }
+
+  .talleres-header {
+    animation: fadeInDown 0.6s ease-out 0.4s both;
+  }
+
+  .talleres-grid > div {
+    animation: scaleIn 0.6s ease-out both;
+  }
+
+  .talleres-grid > div:nth-child(1) {
+    animation-delay: 0.1s;
+  }
+
+  .talleres-grid > div:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+
+  .talleres-grid > div:nth-child(3) {
+    animation-delay: 0.3s;
+  }
+
+  .values-card {
+    animation: fadeInUp 0.6s ease-out both;
+  }
+
+  .values-card:nth-child(1) {
+    animation-delay: 0.1s;
+  }
+  .values-card:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+  .values-card:nth-child(3) {
+    animation-delay: 0.3s;
+  }
+  .values-card:nth-child(4) {
+    animation-delay: 0.4s;
+  }
+
+  .cta-section {
+    animation: scaleIn 0.8s ease-out 0.6s both;
+  }
+
+  /* Efecto de brillo en hover para los títulos */
+  .group:hover h3 {
+    text-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
+  }
+</style>

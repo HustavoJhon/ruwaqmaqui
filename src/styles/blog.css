@@ -1,0 +1,21 @@
+/* Estilos específicos para las páginas de blog extraídos de [slug].astro */
+.prose h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #16273b;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+.prose p {
+  margin-bottom: 1rem;
+  color: #374151;
+  line-height: 1.75;
+}
+.prose ul, .prose ol {
+  margin-bottom: 1rem;
+  margin-left: 1.5rem;
+  color: #374151;
+}
+.prose li {
+  margin-bottom: 0.5rem;
+}

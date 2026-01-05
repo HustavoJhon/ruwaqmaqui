@@ -1,0 +1,498 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import SEO from "../../../components/SEO.astro";
+import { PRODUCTS } from "../../../data/products";
+import ProductCard from "../../../components/ProductCard.astro";
+import type { Product } from "../../../data/products";
+import { getLocalizedPath, useTranslations, getProductTranslation } from "../../../i18n";
+
+// Función requerida para rutas dinámicas en Astro
+export async function getStaticPaths() {
+  return PRODUCTS.map((product) => ({
+    params: { id: product.id.toString() },
+    props: { product },
+  }));
+}
+
+interface Props {
+  product: Product;
+}
+
+// Obtener el producto desde props (generado por getStaticPaths)
+const { product } = Astro.props;
+
+// Detectar idioma desde URL (siempre será 'en' en esta ruta)
+const currentLang = "en";
+const t = useTranslations(currentLang);
+const getPath = (path: string) => getLocalizedPath(path, currentLang);
+
+// Obtener traducciones del producto
+const productTrans = getProductTranslation(product.id, currentLang);
+const productName = productTrans?.name || product.name;
+const productDescription = productTrans?.description || product.description;
+const productDetailedDescription = productTrans?.detailedDescription || product.detailedDescription;
+const productBadge = productTrans?.badge || product.badge;
+
+const productImage =
+  typeof product.image === "string" ? product.image : product.image.src;
+const productUrl = `https://oro-inca-joyeria.vercel.app${getPath(`/product/${product.id}`)}`;
+
+// Obtener productos similares (misma categoría, excluyendo el producto actual) - más productos
+const similarProducts = PRODUCTS.filter(
+  (p) => p.category === product.category && p.id !== product.id,
+).slice(0, 8);
+
+// Función para obtener el nombre de la categoría según idioma
+const getCategoryName = (category: Product["category"]): string => {
+  const categoryNames: Record<Product["category"], string> = {
+    anillos: "Rings",
+    aretes: "Earrings",
+    collares: "Necklaces",
+    pulseras: "Bracelets",
+  };
+  return categoryNames[category] || category;
+};
+
+// Obtener todas las imágenes del producto
+const getAllImages = (): string[] => {
+  const images: string[] = [];
+  const mainImage =
+    typeof product.image === "string" ? product.image : product.image.src;
+  images.push(mainImage);
+
+  if (product.images && product.images.length > 0) {
+    product.images.forEach((img) => {
+      const imgSrc = typeof img === "string" ? img : img.src;
+      if (imgSrc !== mainImage) {
+        images.push(imgSrc);
+      }
+    });
+  }
+
+  return images;
+};
+
+const productImages = getAllImages();
+const mainImageSrc = productImages[0];
+---
+
+<Layout>
+  <SEO
+    title={`${productName} | ORO INCA Jewelry - Buy Online`}
+    description={productDetailedDescription || productDescription}
+    canonical={`/product/${product.id}`}
+    ogImage={productImage}
+    ogType="product"
+    keywords={`${product.name}, ${product.category}, joyería, oro, plata, comprar online`}
+    lang={currentLang}
+    structuredData={{
+      "@context": "https://schema.org",
+      "@type": "Product",
+      name: productName,
+      description: productDetailedDescription || productDescription,
+      image: productImage,
+      brand: {
+        "@type": "Brand",
+        name: "ORO INCA Joyería",
+      },
+      offers: {
+        "@type": "Offer",
+        url: productUrl,
+        priceCurrency: "PEN",
+        price: product.price,
+        priceValidUntil: new Date(Date.now() + 365 * 24 * 60 * 60 * 1000)
+          .toISOString()
+          .split("T")[0],
+        itemCondition: "https://schema.org/NewCondition",
+        availability: "https://schema.org/InStock",
+        seller: {
+          "@type": "Organization",
+          name: "ORO INCA Joyería",
+        },
+      },
+      category: product.category,
+      ...(product.oldPrice && {
+        aggregateRating: {
+          "@type": "AggregateRating",
+          ratingValue: "4.5",
+          reviewCount: "10",
+        },
+      }),
+    }}
+  />
+  <section class="pt-24 pb-16">
+    <div class="max-w-7xl mx-auto px-6">
+      <!-- Breadcrumb -->
+      <nav class="mb-8 text-sm">
+        <ol class="flex items-center gap-2 text-gray-600">
+          <li>
+            <a href={getPath("/")} class="hover:text-[#d4af37] transition"
+              >{t("nav.inicio")}</a>
+          </li>
+          <li>/</li>
+          <li>
+            <a
+              href={getPath("/products")}
+              class="hover:text-[#d4af37] transition">{t("nav.productos")}</a>
+          </li>
+          <li>/</li>
+          <li>
+            <a
+              href={getPath(
+                `/products?category=${product.category}#${product.category}`,
+              )}
+              class="hover:text-[#d4af37] transition"
+              >{getCategoryName(product.category)}</a>
+          </li>
+          <li>/</li>
+          <li class="text-gray-900 font-medium">{productName}</li>
+        </ol>
+      </nav>
+
+      <!-- Producto Principal -->
+      <div class="grid md:grid-cols-2 gap-12 mb-20">
+        <!-- Galería de Imágenes con Zoom -->
+        <div class="space-y-4">
+          <!-- Imagen Principal con Zoom -->
+          <div
+            class="relative overflow-hidden rounded-md shadow-lg group cursor-zoom-in"
+            id="main-image-container"
+          >
+            {
+              productBadge && (
+                <span class="absolute top-4 left-4 bg-[#d4af37] text-[#16273b] text-xs font-bold px-4 py-2 rounded-full z-10">
+                  {productBadge}
+                </span>
+              )
+            }
+            <img
+              id="main-product-image"
+              src={mainImageSrc}
+              alt={productName}
+              class="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-110"
+            />
+          </div>
+
+          <!-- Miniaturas (si hay más de una imagen) -->
+          {
+            productImages.length > 1 && (
+              <div class="flex gap-4 overflow-x-auto pb-2 thumbnail-container">
+                {productImages.map((imgSrc, index) => (
+                  <button
+                    type="button"
+                    class="thumbnail-btn flex-shrink-0 w-24 h-24 rounded-md overflow-hidden border-2 border-transparent hover:border-[#d4af37] transition-all focus:outline-none focus:ring-2 focus:ring-[#d4af37]"
+                    data-image-src={imgSrc}
+                  >
+                    <img
+                      src={imgSrc}
+                      alt={`${productName} - View ${index + 1}`}
+                      class="w-full h-full object-cover"
+                    />
+                  </button>
+                ))}
+              </div>
+            )
+          }
+        </div>
+
+        <!-- Información del Producto -->
+        <div class="space-y-6">
+          <div>
+            <span
+              class="inline-block px-4 py-2 bg-gray-100 text-gray-700 rounded-full text-sm font-medium mb-4"
+            >
+              {getCategoryName(product.category)}
+            </span>
+            <h1 class="text-4xl md:text-5xl font-bold text-[#16273b] mb-4">
+              {productName}
+            </h1>
+            <p class="text-lg text-gray-700 leading-relaxed mb-4">
+              {productDescription}
+            </p>
+            {
+              productDetailedDescription && (
+                <div class="mt-6 pt-6 border-t border-gray-200">
+                  <h3 class="text-xl font-semibold text-[#16273b] mb-3">
+                    Detailed Description
+                  </h3>
+                  <p class="text-gray-700 leading-relaxed">
+                    {productDetailedDescription}
+                  </p>
+                </div>
+              )
+            }
+          </div>
+
+          <!-- Precio -->
+          <div class="py-6 border-t border-b border-gray-200">
+            <div class="flex items-baseline gap-4">
+              <span class="text-4xl font-bold text-[#d4af37]">
+                S/ {product.price.toFixed(2)}
+              </span>
+              {
+                product.oldPrice && (
+                  <span class="text-2xl line-through text-gray-400">
+                    S/ {product.oldPrice.toFixed(2)}
+                  </span>
+                )
+              }
+            </div>
+            {
+              product.oldPrice && (
+                <p class="text-sm text-green-600 mt-2">
+                  {t("common.ahorra")} S/ {(product.oldPrice - product.price).toFixed(2)}
+                </p>
+              )
+            }
+          </div>
+
+          <!-- Botones de Acción -->
+          <div class="flex flex-col sm:flex-row gap-4">
+            <a
+              href={`https://wa.me/51944480535?text=Hello, I am interested in the product: ${productName} - S/ ${product.price}`}
+              target="_blank"
+              class="flex-1 bg-[#25D366] hover:bg-[#20BA5A] text-white px-8 py-4 rounded-full font-semibold text-center transition-colors"
+            >
+              💬 Consult via WhatsApp
+            </a>
+            <a
+              href={getPath("/products")}
+              class="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-800 px-8 py-4 rounded-full font-semibold text-center transition-colors"
+            >
+              {t("common.verMas")}
+            </a>
+          </div>
+
+          <!-- Información Adicional -->
+          <div class="pt-6 space-y-4">
+            <div class="flex items-start gap-3">
+              <svg
+                class="w-6 h-6 text-[#d4af37] mt-1"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M5 13l4 4L19 7"></path>
+              </svg>
+              <div>
+                <h3 class="font-semibold text-gray-900">{t("common.garantiaCalidad")}</h3>
+                <p class="text-gray-600 text-sm">
+                  {t("common.garantiaDescripcion")}
+                </p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <svg
+                class="w-6 h-6 text-[#d4af37] mt-1"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M5 13l4 4L19 7"></path>
+              </svg>
+              <div>
+                <h3 class="font-semibold text-gray-900">{t("common.envioNacional")}</h3>
+                <p class="text-gray-600 text-sm">
+                  {t("common.envioDescripcion")}
+                </p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <svg
+                class="w-6 h-6 text-[#d4af37] mt-1"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M5 13l4 4L19 7"></path>
+              </svg>
+              <div>
+                <h3 class="font-semibold text-gray-900">{t("common.pagoSeguro")}</h3>
+                <p class="text-gray-600 text-sm">
+                  {t("common.pagoDescripcion")}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Productos Similares / Recomendaciones -->
+      {
+        similarProducts.length > 0 && (
+          <div class="mb-20">
+            <h2 class="text-3xl md:text-4xl font-bold text-[#16273b] mb-8">
+              {t("common.productosRecomendados")}
+            </h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+              {similarProducts.map((similarProduct) => {
+                const similarTrans = getProductTranslation(similarProduct.id, currentLang);
+                return (
+                  <ProductCard
+                    id={similarProduct.id}
+                    name={similarTrans?.name || similarProduct.name}
+                    description={similarTrans?.description || similarProduct.description}
+                    price={similarProduct.price}
+                    oldPrice={similarProduct.oldPrice}
+                    image={similarProduct.image}
+                    badge={similarTrans?.badge || similarProduct.badge}
+                  />
+                );
+              })}
+            </div>
+          </div>
+        )
+      }
+
+      <!-- Sección de Contacto -->
+      <div class="bg-gray-50 rounded-3xl p-8 md:p-12 mb-20">
+        <div class="max-w-4xl mx-auto text-center">
+          <h2 class="text-3xl md:text-4xl font-bold text-[#16273b] mb-4">
+            ¿Tienes alguna pregunta?
+          </h2>
+          <p class="text-lg text-gray-700 mb-8">
+            Estamos aquí para ayudarte. Contáctanos y te responderemos lo antes
+            posible.
+          </p>
+
+          <div class="grid md:grid-cols-2 gap-6 mb-8">
+            <!-- WhatsApp -->
+            <a
+              href="https://wa.me/51944480535"
+              target="_blank"
+              class="bg-white p-6 rounded-2xl shadow-md hover:shadow-lg transition-shadow group"
+            >
+              <div class="text-4xl mb-4">💬</div>
+              <h3 class="font-semibold text-lg text-gray-900 mb-2">WhatsApp</h3>
+              <p class="text-gray-600 text-sm mb-4">+51 926 946 362</p>
+              <span class="text-[#25D366] font-medium group-hover:underline"
+                >Enviar mensaje →</span
+              >
+            </a>
+
+            <!-- Teléfono -->
+            <div class="bg-white p-6 rounded-2xl shadow-md">
+              <div class="text-4xl mb-4">📞</div>
+              <h3 class="font-semibold text-lg text-gray-900 mb-2">Teléfono</h3>
+              <p class="text-gray-600 text-sm mb-4">+51 926 946 362</p>
+              <a
+                href="tel:+51944480535"
+                class="text-[#d4af37] font-medium hover:underline"
+              >
+                Llamar ahora →
+              </a>
+            </div>
+          </div>
+
+          <!-- Información Adicional -->
+          <div class="bg-white p-6 rounded-2xl shadow-md">
+            <h3 class="font-semibold text-lg text-gray-900 mb-4">
+              Información de Contacto
+            </h3>
+            <div class="grid sm:grid-cols-2 gap-4 text-left">
+              <div>
+                <p class="text-sm text-gray-600">📍 Ubicación</p>
+                <p class="font-medium text-gray-900">Perú</p>
+              </div>
+              <div>
+                <p class="text-sm text-gray-600">⏰ Horario de Atención</p>
+                <p class="font-medium text-gray-900">
+                  Lun - Sáb: 9:00 AM - 8:00 PM
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  // Efecto de zoom en la imagen principal y manejo de miniaturas
+  document.addEventListener("DOMContentLoaded", () => {
+    const mainImageContainer = document.getElementById("main-image-container");
+    const mainImage = document.getElementById("main-product-image");
+
+    // Efecto de zoom
+    if (mainImageContainer && mainImage) {
+      mainImageContainer.addEventListener("mousemove", (e) => {
+        const rect = mainImageContainer.getBoundingClientRect();
+        const x = ((e.clientX - rect.left) / rect.width) * 100;
+        const y = ((e.clientY - rect.top) / rect.height) * 100;
+
+        (mainImage).style.transformOrigin = `${x}% ${y}%`;
+        (mainImage).style.transform = "scale(1.5)";
+      });
+
+      mainImageContainer.addEventListener("mouseleave", () => {
+        (mainImage).style.transform = "scale(1)";
+        (mainImage).style.transformOrigin = "center center";
+      });
+    }
+
+    // Manejo de clicks en miniaturas
+    document.querySelectorAll(".thumbnail-btn").forEach((button) => {
+      button.addEventListener("click", () => {
+        const imageSrc = button.getAttribute("data-image-src");
+        if (imageSrc) {
+          const img = document.getElementById("main-product-image");
+          if (img) img.setAttribute("src", imageSrc);
+
+          // Remover borde activo de todas las miniaturas
+          document.querySelectorAll(".thumbnail-btn").forEach((btn) => {
+            btn.classList.remove("border-[#d4af37]", "ring-2", "ring-[#d4af37]");
+            btn.classList.add("border-transparent");
+          });
+          // Agregar borde activo a la miniatura seleccionada
+          button.classList.remove("border-transparent");
+          button.classList.add("border-[#d4af37]", "ring-2", "ring-[#d4af37]");
+        }
+      });
+    });
+
+    // Marcar la primera miniatura como activa al cargar
+    const firstThumbnail = document.querySelector(".thumbnail-btn");
+    if (firstThumbnail) {
+      firstThumbnail.classList.remove("border-transparent");
+      firstThumbnail.classList.add(
+        "border-[#d4af37]",
+        "ring-2",
+        "ring-[#d4af37]",
+      );
+    }
+  });
+</script>
+
+<style>
+  /* Smooth scroll para las miniaturas */
+  .overflow-x-auto::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  .overflow-x-auto::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+  }
+
+  .overflow-x-auto::-webkit-scrollbar-thumb {
+    background: #d4af37;
+    border-radius: 10px;
+  }
+
+  .overflow-x-auto::-webkit-scrollbar-thumb:hover {
+    background: #b8941f;
+  }
+</style>

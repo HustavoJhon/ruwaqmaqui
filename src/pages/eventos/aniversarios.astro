@@ -1,0 +1,164 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { PRODUCTS } from "../../data/products";
+import ProductCard from "../../components/ProductCard.astro";
+
+// Todos los productos para aniversarios
+const anniversaryProducts = PRODUCTS;
+---
+
+<Layout title="Aniversarios | Eterno Compromiso | ORO INCA Joyería">
+  <section class="pt-24 pb-16 bg-white">
+    <div class="max-w-7xl mx-auto px-6">
+      
+      <!-- Breadcrumb -->
+      <nav class="mb-8 text-sm">
+        <ol class="flex items-center gap-2 text-gray-600">
+          <li><a href="/" class="hover:text-[#d4af37] transition">Inicio</a></li>
+          <li>/</li>
+          <li><a href="/eterno-compromiso" class="hover:text-[#d4af37] transition">Eterno Compromiso</a></li>
+          <li>/</li>
+          <li class="text-gray-900 font-medium">Aniversarios</li>
+        </ol>
+      </nav>
+
+      <!-- Hero -->
+      <div class="text-center mb-16 bg-white rounded-md p-12 md:p-16 border border-[#D4AF37]/10 shadow-sm">
+        <div class="text-6xl mb-6 text-[#D4AF37]">🎉</div>
+        <h1 class="text-4xl md:text-6xl font-bold mb-6 text-[#16273b]">
+          Aniversarios
+        </h1>
+        <p class="text-xl md:text-2xl text-[#16273b]/70 max-w-3xl mx-auto">
+          Celebra cada año de amor con una joya especial que renueva vuestro compromiso.
+        </p>
+      </div>
+
+      <!-- Contenido Principal -->
+      <div class="mb-16">
+        <div class="grid md:grid-cols-2 gap-12 mb-12">
+          <div>
+            <h2 class="text-3xl font-bold text-[#16273b] mb-6">
+              Celebra Cada Hito de Vuestro Amor
+            </h2>
+            <div class="space-y-4 text-gray-700">
+              <p>
+                Cada aniversario es una oportunidad para celebrar vuestro amor y renovar vuestros votos. 
+                En ORO INCA, ofrecemos una amplia gama de joyas perfectas para marcar estos momentos especiales.
+              </p>
+              <p>
+                Desde piezas conmemorativas hasta diseños completamente nuevos, tenemos la joya perfecta 
+                para cada aniversario, ya sea el primero o el quincuagésimo.
+              </p>
+            </div>
+          </div>
+          <div class="bg-white rounded-md p-8 border border-[#16273b]/5 shadow-sm">
+            <h3 class="text-2xl font-bold text-[#16273b] mb-6">Tradición de Materiales por Año</h3>
+            <div class="space-y-3 text-sm">
+              <div class="flex justify-between items-center pb-2 border-b">
+                <span class="font-medium text-[#16273b]">1 año</span>
+                <span class="text-gray-600">Papel / Oro</span>
+              </div>
+              <div class="flex justify-between items-center pb-2 border-b">
+                <span class="font-medium text-[#16273b]">5 años</span>
+                <span class="text-gray-600">Madera / Plata</span>
+              </div>
+              <div class="flex justify-between items-center pb-2 border-b">
+                <span class="font-medium text-[#16273b]">10 años</span>
+                <span class="text-gray-600">Estaño / Plata</span>
+              </div>
+              <div class="flex justify-between items-center pb-2 border-b">
+                <span class="font-medium text-[#16273b]">15 años</span>
+                <span class="text-gray-600">Cristal / Plata</span>
+              </div>
+              <div class="flex justify-between items-center pb-2 border-b">
+                <span class="font-medium text-[#16273b]">25 años</span>
+                <span class="text-gray-600">Plata</span>
+              </div>
+              <div class="flex justify-between items-center">
+                <span class="font-medium text-[#16273b]">50 años</span>
+                <span class="text-gray-600">Oro</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Ideas por tipo -->
+        <div class="grid md:grid-cols-3 gap-6 mb-12">
+          <div class="bg-white p-6 rounded-md shadow-sm">
+            <div class="text-4xl mb-4">💍</div>
+            <h3 class="text-xl font-bold text-[#16273b] mb-3">Anillos Renovados</h3>
+            <p class="text-gray-600 text-sm">
+              Actualiza vuestros anillos originales o elige nuevos diseños que complementen los existentes.
+            </p>
+          </div>
+          <div class="bg-white p-6 rounded-md shadow-sm">
+            <div class="text-4xl mb-4">📿</div>
+            <h3 class="text-xl font-bold text-[#16273b] mb-3">Collares Conmemorativos</h3>
+            <p class="text-gray-600 text-sm">
+              Piezas elegantes que simbolizan vuestro amor continuo y crecimiento juntos.
+            </p>
+          </div>
+          <div class="bg-white p-6 rounded-md shadow-sm">
+            <div class="text-4xl mb-4">💎</div>
+            <h3 class="text-xl font-bold text-[#16273b] mb-3">Sets Completos</h3>
+            <p class="text-gray-600 text-sm">
+              Conjuntos coordinados que incluyen múltiples piezas para celebrar en grande.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Productos -->
+      {anniversaryProducts.length > 0 && (
+        <div class="mb-16">
+          <h2 class="text-3xl md:text-4xl font-bold text-[#16273b] mb-8">
+            Joyas Perfectas para Aniversarios
+          </h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            {anniversaryProducts.map((product) => (
+              <ProductCard
+                id={product.id}
+                name={product.name}
+                description={product.description}
+                price={product.price}
+                oldPrice={product.oldPrice}
+                image={product.image}
+                badge={product.badge}
+              />
+            ))}
+          </div>
+        </div>
+      )}
+
+      <!-- CTA -->
+      <div class="bg-white rounded-md p-12 text-center border border-[#D4AF37]/10 shadow-sm">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4 text-[#16273b]">
+          Celebra Vuestro Amor
+        </h2>
+        <p class="text-lg mb-8 text-[#16273b]/80">
+          Encuentra la joya perfecta para vuestro próximo aniversario. Consulta con nuestros expertos.
+        </p>
+        <div class="flex flex-wrap justify-center gap-4">
+          <a
+            href="/contact"
+            class="bg-[#D4AF37] hover:bg-[#b8941f] text-[#16273b] px-8 py-4 rounded-full font-semibold text-lg transition-colors"
+          >
+            Consultar Opciones
+          </a>
+          <a
+            href="https://wa.me/51944480535"
+            target="_blank"
+            class="bg-transparent hover:bg-[#fff3e0] border border-[#D4AF37] text-[#16273b] px-8 py-4 rounded-full font-semibold text-lg transition-colors"
+          >
+            WhatsApp
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</Layout>
+
+
+
+

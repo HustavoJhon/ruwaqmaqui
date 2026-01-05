@@ -1,0 +1,15 @@
+:root {
+  /* Brand colors */
+  --color-ink: #16273b;
+  --color-ink-dark: #0f1c2e;
+  --color-gold: #d4af37;
+  --color-gold-soft: #f5e6a8;
+  --color-light: #fffeff;
+
+  /* Spacing */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 2rem;
+  --space-xl: 4rem;
+}

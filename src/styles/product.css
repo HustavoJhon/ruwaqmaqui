@@ -1,0 +1,44 @@
+/* Smooth scroll para las miniaturas */
+.thumbnail-container::-webkit-scrollbar {
+  height: 8px;
+}
+
+.thumbnail-container::-webkit-scrollbar-track {
+  background: rgba(212, 175, 55, 0.1);
+  border-radius: 10px;
+}
+
+.thumbnail-container::-webkit-scrollbar-thumb {
+  background: #D4AF37;
+  border-radius: 10px;
+}
+
+.thumbnail-container::-webkit-scrollbar-thumb:hover {
+  background: #b8941f;
+}
+
+/* Animaciones sutiles al cargar */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.product-gallery {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.product-info {
+  animation: fadeInUp 0.6s ease-out 0.2s both;
+}
+
+/* Efecto de brillo sutil en hover para el precio */
+.text-\[\#D4AF37\]:hover {
+  text-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+  transition: text-shadow 0.3s ease;
+}

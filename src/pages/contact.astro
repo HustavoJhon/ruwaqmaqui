@@ -1,0 +1,434 @@
+---
+import Layout from "../layouts/Layout.astro";
+import SEO from "../components/SEO.astro";
+import { type Language, useTranslations } from "../i18n";
+
+// Obtener idioma actual
+const urlLang = Astro.url.searchParams.get("lang") as Language | null;
+const cookieLang = Astro.cookies.get("language")?.value as Language | null;
+const currentLang: Language =
+  urlLang && (urlLang === "es" || urlLang === "en")
+    ? urlLang
+    : cookieLang && (cookieLang === "es" || cookieLang === "en")
+      ? cookieLang
+      : "es";
+
+const t = useTranslations(currentLang);
+---
+
+<Layout>
+  <SEO
+    title={currentLang === "en"
+      ? "Contact Us | ORO INCA Jewelry"
+      : "Contacto | ORO INCA Joyería"}
+    description={currentLang === "en"
+      ? "Contact ORO INCA Jewelry. We're here to help you with any questions about our products. WhatsApp, phone, email and location."
+      : "Contáctanos en ORO INCA Joyería. Estamos aquí para ayudarte con cualquier consulta sobre nuestros productos. WhatsApp, teléfono, email y ubicación."}
+    canonical="/contact"
+    keywords="contacto joyería, WhatsApp joyería, teléfono joyería, email joyería"
+    lang={currentLang}
+    structuredData={{
+      "@context": "https://schema.org",
+      "@type": "ContactPage",
+      name: currentLang === "en" ? "Contact Us" : "Contacto",
+      description:
+        currentLang === "en"
+          ? "Contact ORO INCA Jewelry for questions and inquiries"
+          : "Contáctanos en ORO INCA Joyería para consultas e información",
+      url: "https://oro-inca-joyeria.vercel.app/contact",
+      mainEntity: {
+        "@type": "Organization",
+        name: "ORO INCA Joyería",
+        contactPoint: {
+          "@type": "ContactPoint",
+          telephone: "+51-944-480-535",
+          contactType: "Customer Service",
+          areaServed: "PE",
+          availableLanguage: ["Spanish", "English"],
+        },
+      },
+    }}
+  />
+  <section class="pt-24 pb-16 bg-white">
+    <div class="max-w-7xl mx-auto px-6">
+      <!-- Header mejorado -->
+      <div class="text-center mb-16 contact-header">
+        <div class="inline-block mb-4">
+          <span class="px-6 py-2 bg-gradient-to-r from-[#D4AF37]/10 to-[#D4AF37]/5 text-[#16273B] rounded-full text-sm font-semibold uppercase tracking-wider border border-[#D4AF37]/20">
+            {t("contact.titulo")}
+          </span>
+        </div>
+        <h1 class="text-5xl md:text-6xl font-bold text-[#16273B] mb-6 leading-tight">
+          {t("contact.titulo")}
+        </h1>
+        <div class="w-24 h-1 bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent mx-auto mb-6"></div>
+        <p class="text-xl text-[#16273B]/70 max-w-2xl mx-auto font-light leading-relaxed">
+          {t("contact.subtitulo")}
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-12 mb-20">
+        <!-- Información de Contacto con diseño mejorado -->
+        <div class="space-y-8 contact-info">
+          <div>
+            <h2 class="text-3xl font-bold text-[#16273B] mb-8 flex items-center gap-3">
+              <span class="w-1.5 h-8 bg-[#D4AF37] rounded-full"></span>
+              {t("contact.informacionContacto")}
+            </h2>
+
+            <!-- WhatsApp con diseño mejorado -->
+            <div
+              class="bg-white p-8 rounded-md shadow-lg hover:shadow-2xl transition-all duration-300 mb-6 border border-gray-100 hover:border-[#25D366]/20 hover:-translate-y-1 group"
+            >
+              <div class="flex items-start gap-5">
+                <div class="w-16 h-16 rounded-md bg-gradient-to-br from-[#25D366]/10 to-[#25D366]/5 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                  <span class="text-4xl">💬</span>
+                </div>
+                <div class="flex-1">
+                  <h3 class="font-bold text-xl text-[#16273B] mb-2">
+                    {t("footer.whatsapp")}
+                  </h3>
+                  <p class="text-[#16273B]/60 mb-4 leading-relaxed">
+                    {t("contact.chatearWhatsApp")}
+                  </p>
+                  <a
+                    href="https://wa.me/51944480535"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#20BA5A] text-white px-6 py-3 rounded-full font-semibold transition-all duration-300 shadow-md hover:shadow-lg"
+                  >
+                    {t("contact.abrirWhatsApp")}
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Teléfono con diseño mejorado -->
+            <div
+              class="bg-white p-8 rounded-md shadow-lg hover:shadow-2xl transition-all duration-300 mb-6 border border-gray-100 hover:border-[#D4AF37]/20 hover:-translate-y-1 group"
+            >
+              <div class="flex items-start gap-5">
+                <div class="w-16 h-16 rounded-md bg-gradient-to-br from-[#D4AF37]/10 to-[#D4AF37]/5 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                  <span class="text-4xl">📞</span>
+                </div>
+                <div class="flex-1">
+                  <h3 class="font-bold text-xl text-[#16273B] mb-2">
+                    {currentLang === "en" ? "Phone" : "Teléfono"}
+                  </h3>
+                  <p class="text-[#16273B]/60 mb-4 leading-relaxed">
+                    {t("contact.llamarTelefono")}
+                  </p>
+                  <a
+                    href="tel:+51944480535"
+                    class="inline-flex items-center gap-2 bg-[#D4AF37] hover:bg-[#b8941f] text-white px-6 py-3 rounded-full font-semibold transition-all duration-300 shadow-md hover:shadow-lg"
+                  >
+                    {currentLang === "en" ? "Call now" : "Llamar ahora"}
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Email con diseño mejorado -->
+            <div
+              class="bg-white p-8 rounded-md shadow-lg hover:shadow-2xl transition-all duration-300 mb-6 border border-gray-100 hover:border-[#16273B]/20 hover:-translate-y-1 group"
+            >
+              <div class="flex items-start gap-5">
+                <div class="w-16 h-16 rounded-md bg-gradient-to-br from-[#16273B]/10 to-[#16273B]/5 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                  <span class="text-4xl">📧</span>
+                </div>
+                <div class="flex-1">
+                  <h3 class="font-bold text-xl text-[#16273B] mb-2">
+                    Email
+                  </h3>
+                  <p class="text-[#16273B]/60 mb-4 leading-relaxed">
+                    {t("contact.enviarEmail")}
+                  </p>
+                  <a
+                    href="mailto:contacto@oroincajoyeria.com"
+                    class="inline-flex items-center gap-2 bg-white border-2 border-[#16273B] hover:bg-[#16273B] text-[#16273B] hover:text-white px-6 py-3 rounded-full font-semibold transition-all duration-300 shadow-md hover:shadow-lg"
+                  >
+                    {currentLang === "en" ? "Send email" : "Enviar email"}
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Ubicación con diseño mejorado -->
+            <div class="bg-gradient-to-br from-[#16273B] to-[#16273B]/90 p-8 rounded-md shadow-lg text-white relative overflow-hidden">
+              <div class="absolute inset-0 opacity-10">
+                <div class="absolute top-0 right-0 w-48 h-48 bg-[#D4AF37] rounded-full blur-3xl"></div>
+              </div>
+              <div class="flex items-start gap-5 relative z-10">
+                <div class="w-16 h-16 rounded-md bg-white/10 backdrop-blur-sm flex items-center justify-center flex-shrink-0">
+                  <span class="text-4xl">📍</span>
+                </div>
+                <div class="flex-1">
+                  <h3 class="font-bold text-xl mb-2">
+                    {t("contact.visitarTienda")}
+                  </h3>
+                  <p class="text-white/80 text-lg">Perú</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Horarios con diseño mejorado -->
+          <div class="bg-gradient-to-br from-[#D4AF37]/5 to-transparent p-8 rounded-md border border-[#D4AF37]/20">
+            <h3 class="font-bold text-2xl text-[#16273B] mb-6 flex items-center gap-3">
+              <span class="text-3xl">⏰</span>
+              {t("contact.horarioAtencion")}
+            </h3>
+            <div class="space-y-4">
+              <div class="flex justify-between items-center py-3 border-b border-[#D4AF37]/10">
+                <span class="text-[#16273B]/70 font-medium">{t("contact.lunesSabado")}:</span>
+                <span class="font-bold text-[#16273B]">9:00 AM - 8:00 PM</span>
+              </div>
+              <div class="flex justify-between items-center py-3 border-b border-[#D4AF37]/10">
+                <span class="text-[#16273B]/70 font-medium">{currentLang === "en" ? "Saturday" : "Sábado"}:</span>
+                <span class="font-bold text-[#16273B]">9:00 AM - 8:00 PM</span>
+              </div>
+              <div class="flex justify-between items-center py-3">
+                <span class="text-[#16273B]/70 font-medium">{t("contact.domingo")}:</span>
+                <span class="font-bold text-[#D4AF37]">{t("contact.cerrado")}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Formulario de Contacto con diseño mejorado -->
+        <div class="bg-white p-10 rounded-md shadow-xl border border-gray-100 contact-form">
+          <h2 class="text-3xl font-bold text-[#16273B] mb-8 flex items-center gap-3">
+            <span class="w-1.5 h-8 bg-[#D4AF37] rounded-full"></span>
+            {currentLang === "en" ? "Send us a Message" : "Envíanos un Mensaje"}
+          </h2>
+
+          <form
+            class="space-y-6"
+            action="https://formspree.io/f/xpwnjnjk"
+            method="POST"
+          >
+            <div>
+              <label
+                for="name"
+                class="block text-sm font-semibold text-[#16273B] mb-3 uppercase tracking-wide"
+              >
+                {currentLang === "en" ? "Full Name *" : "Nombre Completo *"}
+              </label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                required
+                class="w-full px-5 py-4 border-2 border-gray-200 rounded-md focus:ring-2 focus:ring-[#D4AF37] focus:border-[#D4AF37] outline-none transition-all duration-300 text-[#16273B] placeholder-[#16273B]/40"
+                placeholder={currentLang === "en" ? "Your name" : "Tu nombre"}
+              />
+            </div>
+
+            <div>
+              <label
+                for="email"
+                class="block text-sm font-semibold text-[#16273B] mb-3 uppercase tracking-wide"
+              >
+                Email *
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                required
+                class="w-full px-5 py-4 border-2 border-gray-200 rounded-md focus:ring-2 focus:ring-[#D4AF37] focus:border-[#D4AF37] outline-none transition-all duration-300 text-[#16273B] placeholder-[#16273B]/40"
+                placeholder="tu@email.com"
+              />
+            </div>
+
+            <div>
+              <label
+                for="phone"
+                class="block text-sm font-semibold text-[#16273B] mb-3 uppercase tracking-wide"
+              >
+                {currentLang === "en" ? "Phone" : "Teléfono"}
+              </label>
+              <input
+                type="tel"
+                id="phone"
+                name="phone"
+                class="w-full px-5 py-4 border-2 border-gray-200 rounded-md focus:ring-2 focus:ring-[#D4AF37] focus:border-[#D4AF37] outline-none transition-all duration-300 text-[#16273B] placeholder-[#16273B]/40"
+                placeholder="+51 999 999 999"
+              />
+            </div>
+
+            <div>
+              <label
+                for="subject"
+                class="block text-sm font-semibold text-[#16273B] mb-3 uppercase tracking-wide"
+              >
+                {currentLang === "en" ? "Subject *" : "Asunto *"}
+              </label>
+              <input
+                type="text"
+                id="subject"
+                name="subject"
+                required
+                class="w-full px-5 py-4 border-2 border-gray-200 rounded-md focus:ring-2 focus:ring-[#D4AF37] focus:border-[#D4AF37] outline-none transition-all duration-300 text-[#16273B] placeholder-[#16273B]/40"
+                placeholder={currentLang === "en"
+                  ? "How can we help you?"
+                  : "¿En qué podemos ayudarte?"}
+              />
+            </div>
+
+            <div>
+              <label
+                for="message"
+                class="block text-sm font-semibold text-[#16273B] mb-3 uppercase tracking-wide"
+              >
+                {currentLang === "en" ? "Message *" : "Mensaje *"}
+              </label>
+              <textarea
+                id="message"
+                name="message"
+                required
+                rows="6"
+                class="w-full px-5 py-4 border-2 border-gray-200 rounded-md focus:ring-2 focus:ring-[#D4AF37] focus:border-[#D4AF37] outline-none transition-all duration-300 resize-none text-[#16273B] placeholder-[#16273B]/40"
+                placeholder={currentLang === "en"
+                  ? "Write your message here..."
+                  : "Escribe tu mensaje aquí..."}></textarea>
+            </div>
+
+            <button
+              type="submit"
+              class="w-full bg-gradient-to-r from-[#16273B] to-[#16273B]/90 hover:from-[#0f1b2d] hover:to-[#0f1b2d] text-white px-8 py-5 rounded-md font-bold text-lg transition-all duration-300 shadow-lg hover:shadow-2xl hover:-translate-y-0.5 flex items-center justify-center gap-3"
+            >
+              {currentLang === "en" ? "Send Message" : "Enviar Mensaje"}
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+              </svg>
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Redes Sociales con diseño mejorado -->
+      <div class="bg-gradient-to-br from-[#16273B] to-[#16273B]/90 rounded-md p-10 md:p-16 text-center relative overflow-hidden shadow-2xl">
+        <!-- Patrón decorativo de fondo -->
+        <div class="absolute inset-0 opacity-5">
+          <div class="absolute top-0 left-0 w-64 h-64 bg-[#D4AF37] rounded-full blur-3xl"></div>
+          <div class="absolute bottom-0 right-0 w-96 h-96 bg-[#D4AF37] rounded-full blur-3xl"></div>
+        </div>
+        
+        <div class="relative z-10">
+          <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">
+            {
+              currentLang === "en"
+                ? "Follow us on Social Media"
+                : "Síguenos en Redes Sociales"
+            }
+          </h2>
+          <div class="w-24 h-1 bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent mx-auto mb-6"></div>
+          <p class="text-white/80 mb-10 text-lg font-light max-w-2xl mx-auto">
+            {
+              currentLang === "en"
+                ? "Stay up to date with our latest news and collections"
+                : "Mantente al día con nuestras últimas novedades y colecciones"
+            }
+          </p>
+          <div class="flex justify-center gap-6">
+            <a
+              href="https://www.facebook.com/oroincajoyeria"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="bg-white p-6 rounded-md shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 group"
+              aria-label="Facebook"
+            >
+              <span class="text-4xl group-hover:scale-110 transition-transform duration-300 inline-block">📘</span>
+            </a>
+
+            <a
+              href="https://www.instagram.com/oroincajoyeria"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="bg-white p-6 rounded-md shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 group"
+              aria-label="Instagram"
+            >
+              <span class="text-4xl group-hover:scale-110 transition-transform duration-300 inline-block">📷</span>
+            </a>
+
+            <a
+              href="https://wa.me/51944480535"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="bg-white p-6 rounded-md shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 group"
+              aria-label="WhatsApp"
+            >
+              <span class="text-4xl group-hover:scale-110 transition-transform duration-300 inline-block">💬</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  /* Animaciones sutiles al cargar */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeInDown {
+    from {
+      opacity: 0;
+      transform: translateY(-30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .contact-header {
+    animation: fadeInDown 0.6s ease-out;
+  }
+
+  .contact-info {
+    animation: fadeInUp 0.6s ease-out 0.2s both;
+  }
+
+  .contact-form {
+    animation: fadeInUp 0.6s ease-out 0.4s both;
+  }
+
+  /* Efecto de hover en inputs */
+  input:focus, textarea:focus {
+    transform: translateY(-2px);
+  }
+
+  /* Efecto de pulso sutil en el botón de enviar */
+  @keyframes pulse-subtle {
+    0%, 100% {
+      box-shadow: 0 10px 25px -5px rgba(22, 39, 59, 0.3);
+    }
+    50% {
+      box-shadow: 0 20px 35px -5px rgba(22, 39, 59, 0.4);
+    }
+  }
+
+  button[type="submit"]:hover {
+    animation: pulse-subtle 2s ease-in-out infinite;
+  }
+</style>

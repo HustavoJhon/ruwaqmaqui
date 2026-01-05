@@ -1,0 +1,95 @@
+---
+import { getCurrentLanguage, getBasePath, getLocalizedPath, type Language } from "../i18n";
+
+interface Props {
+  title: string;
+  description: string;
+  canonical?: string;
+  ogImage?: string;
+  ogType?: "website" | "article" | "product";
+  keywords?: string;
+  lang?: Language;
+  noindex?: boolean;
+  structuredData?: object;
+}
+
+const {
+  title,
+  description,
+  canonical,
+  ogImage = "https://oro-inca-joyeria.vercel.app/assets/img/og-image.jpg",
+  ogType = "website",
+  keywords = "joyería Perú, joyas de oro, joyas de plata, anillos de compromiso, aretes de oro, collares de plata, pulseras Perú, joyería online Lima, oro 18k Perú",
+  lang,
+  noindex = false,
+  structuredData,
+} = Astro.props;
+
+// Detectar idioma desde URL si no se proporciona
+const currentLang = lang || getCurrentLanguage(Astro);
+const basePath = getBasePath(Astro.url.pathname);
+const baseUrl = "https://oro-inca-joyeria.vercel.app";
+
+// Construir canonical y alternativas hreflang
+const canonicalPath = canonical || basePath;
+const fullCanonical = `${baseUrl}${getLocalizedPath(canonicalPath, currentLang)}`;
+
+// URLs alternativas para hreflang
+const esUrl = `${baseUrl}${getLocalizedPath(canonicalPath, 'es')}`;
+const enUrl = `${baseUrl}${getLocalizedPath(canonicalPath, 'en')}`;
+
+const locale = currentLang === "en" ? "en_US" : "es_PE";
+---
+
+<!-- Primary Meta Tags -->
+<title>{title}</title>
+<meta name="title" content={title} />
+<meta name="description" content={description} />
+<meta name="keywords" content={keywords} />
+<meta name="author" content="ORO INCA Joyería" />
+<meta
+  name="robots"
+  content={noindex ? "noindex, nofollow" : "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"}
+/>
+<link rel="canonical" href={fullCanonical} />
+
+<!-- Hreflang para SEO multiidioma -->
+<link rel="alternate" hreflang="es" href={esUrl} />
+<link rel="alternate" hreflang="en" href={enUrl} />
+<link rel="alternate" hreflang="x-default" href={esUrl} />
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content={ogType} />
+<meta property="og:url" content={fullCanonical} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={ogImage} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content={title} />
+<meta property="og:site_name" content="ORO INCA Joyería" />
+<meta property="og:locale" content={locale} />
+{lang === "en" && <meta property="og:locale:alternate" content="es_PE" />}
+{lang === "es" && <meta property="og:locale:alternate" content="en_US" />}
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:url" content={fullCanonical} />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImage} />
+<meta name="twitter:image:alt" content={title} />
+<meta name="twitter:site" content="@oro_incajoyeria" />
+<meta name="twitter:creator" content="@oro_incajoyeria" />
+
+<!-- Additional SEO -->
+<meta name="theme-color" content="#16273b" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="ORO INCA Joyería" />
+
+<!-- Structured Data -->
+{structuredData && (
+  <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+)}
+

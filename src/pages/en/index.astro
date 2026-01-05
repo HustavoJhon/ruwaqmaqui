@@ -1,0 +1,206 @@
+---
+import "../../styles/global.css";
+import Header from "../../sections/Header.astro";
+import Hero from "../../sections/Hero.astro";
+import Categories from "../../sections/Categories.astro";
+import FeaturedProducts from "../../sections/FeaturedProducts.astro";
+import Collections from "../../sections/Collections.astro";
+import WhyChooseUs from "../../sections/WhyChooseUs.astro";
+import Testimonials from "../../sections/Testimonials.astro";
+import Promotions from "../../sections/Promotions.astro";
+import Footer from "../../sections/Footer.astro";
+import ProductsCarousel from "../../sections/ProductsCarousel.astro";
+import SEO from "../../components/SEO.astro";
+
+const currentLang = "en";
+const htmlLang = "en";
+---
+
+<!doctype html>
+<html lang={htmlLang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="google-site-verification"
+      content="HFY4hbNLPDFqWNVTI119L5TEeT-tIjjgs398kHZHGcI"
+    />
+    <SEO
+      title="ORO INCA Jewelry | Buy Gold and Silver Jewelry in Peru - National Shipping"
+      description="Buy 18k gold and 925 silver jewelry at ORO INCA Jewelry Peru. Engagement rings, earrings, necklaces, bracelets and chains with guarantee. Free shipping to Lima, Cusco, Arequipa. ✓ Affordable prices ✓ Exclusive designs"
+      canonical="/"
+      keywords="jewelry Peru, gold jewelry, silver jewelry, engagement rings, gold earrings, silver necklaces, bracelets Peru, online jewelry Lima, 18k gold Peru"
+      lang={currentLang}
+      structuredData={{
+        "@context": "https://schema.org",
+        "@type": "JewelryStore",
+        name: "ORO INCA Jewelry",
+        description:
+          "Online jewelry store of gold and silver in Peru with nationwide shipping",
+        url: "https://oro-inca-joyeria.vercel.app/en/",
+        logo: "https://oro-inca-joyeria.vercel.app/assets/img/logo.png",
+        image: "https://oro-inca-joyeria.vercel.app/assets/img/og-image.jpg",
+        priceRange: "$$",
+        address: {
+          "@type": "PostalAddress",
+          addressCountry: "PE",
+          addressLocality: "Lima",
+        },
+        geo: {
+          "@type": "GeoCoordinates",
+          latitude: "-12.046374",
+          longitude: "-77.042793",
+        },
+        areaServed: {
+          "@type": "Country",
+          name: "Peru",
+        },
+        currenciesAccepted: "PEN",
+        paymentAccepted: "Credit card, debit card, bank transfer",
+        openingHours: "Mo-Sa 09:00-20:00",
+        telephone: "+51-XXX-XXX-XXX",
+      }}
+    />
+
+    <!-- Preconnect para mejorar velocidad -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Favicon optimizado -->
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+
+    <!-- Open Graph mejorado -->
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:title"
+      content="ORO INCA Jewelry | Gold and Silver Jewelry in Peru - National Shipping"
+    />
+    <meta
+      property="og:description"
+      content="Buy 18k gold and 925 silver jewelry at ORO INCA Jewelry. Rings, earrings, necklaces and bracelets with exclusive designs. Free shipping throughout Peru. Affordable prices and guarantee."
+    />
+    <meta property="og:url" content="https://oro-inca-joyeria.vercel.app/en/" />
+    <meta
+      property="og:image"
+      content="https://oro-inca-joyeria.vercel.app/assets/img/og-image.jpg"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="ORO INCA Jewelry - Gold and Silver Jewelry in Peru"
+    />
+    <meta property="og:site_name" content="ORO INCA Jewelry" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter Cards mejorado -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="ORO INCA Jewelry | Gold and Silver Jewelry in Peru"
+    />
+    <meta
+      name="twitter:description"
+      content="Buy 18k gold and 925 silver jewelry. Rings, earrings, necklaces with free shipping throughout Peru."
+    />
+    <meta
+      name="twitter:image"
+      content="https://oro-inca-joyeria.vercel.app/assets/img/og-image.jpg"
+    />
+    <meta
+      name="twitter:image:alt"
+      content="ORO INCA Jewelry - Jewelry collection"
+    />
+    <meta name="twitter:site" content="@oro_incajoyeria" />
+    <meta name="twitter:creator" content="@oro_incajoyeria" />
+
+    <!-- Schema.org para SEO local -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "JewelryStore",
+        "name": "ORO INCA Jewelry",
+        "description": "Online jewelry store of gold and silver in Peru with nationwide shipping",
+        "url": "https://oro-inca-joyeria.vercel.app/en/",
+        "logo": "https://oro-inca-joyeria.vercel.app/assets/img/logo.png",
+        "image": "https://oro-inca-joyeria.vercel.app/assets/img/og-image.jpg",
+        "priceRange": "$$",
+        "address": {
+          "@type": "PostalAddress",
+          "addressCountry": "PE",
+          "addressLocality": "Lima"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": "-12.046374",
+          "longitude": "-77.042793"
+        },
+        "areaServed": {
+          "@type": "Country",
+          "name": "Peru"
+        },
+        "currenciesAccepted": "PEN",
+        "paymentAccepted": "Credit card, debit card, bank transfer",
+        "openingHours": "Mo-Sa 09:00-20:00",
+        "telephone": "+51-XXX-XXX-XXX"
+      }
+    </script>
+
+    <!-- Schema.org para organización -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "ORO INCA Jewelry",
+        "url": "https://oro-inca-joyeria.vercel.app/en/",
+        "logo": "https://oro-inca-joyeria.vercel.app/assets/img/logo.png",
+        "sameAs": [
+          "https://www.facebook.com/oroincajoyeria",
+          "https://www.instagram.com/oroincajoyeria",
+          "https://twitter.com/oro_incajoyeria"
+        ],
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+51-XXX-XXX-XXX",
+          "contactType": "Customer Service",
+          "areaServed": "PE",
+          "availableLanguage": "English"
+        }
+      }
+    </script>
+
+    <!-- Breadcrumb Schema -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://oro-inca-joyeria.vercel.app/en/"
+          }
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <Header lang={currentLang} />
+    <main>
+      <Hero lang={currentLang} />
+      <Categories lang={currentLang} />
+      <FeaturedProducts lang={currentLang} />
+      <Collections lang={currentLang} />
+      <WhyChooseUs lang={currentLang} />
+      <Testimonials lang={currentLang} />
+      <Promotions lang={currentLang} />
+    </main>
+    <Footer lang={currentLang} />
+  </body>
+</html>
+
+

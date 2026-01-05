@@ -1,0 +1,272 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import SEO from "../../../components/SEO.astro";
+import { PRODUCTS } from "../../../data/products";
+import ProductCard from "../../../components/ProductCard.astro";
+import { getLocalizedPath, useTranslations } from "../../../i18n";
+
+const currentLang = "en";
+const t = useTranslations(currentLang);
+const getPath = (path: string) => getLocalizedPath(path, currentLang);
+
+// All products for anniversaries
+const anniversaryProducts = PRODUCTS;
+---
+
+<Layout>
+    <SEO
+        title="Anniversary Jewelry | ORO INCA Jewelry"
+        description="Celebrate your love with our exclusive collection of anniversary jewelry. Rings, necklaces and bracelets in 18k gold and 925 silver. Make this day unforgettable."
+        canonical={getPath("/events/aniversarios")}
+        keywords="anniversary jewelry, anniversary gifts, gold rings, silver necklaces, romantic gifts"
+        lang={currentLang}
+        structuredData={{
+            "@context": "https://schema.org",
+            "@type": "CollectionPage",
+            name: "Anniversary Jewelry",
+            description:
+                "Exclusive collection of jewelry to celebrate anniversaries",
+            url: "https://oro-inca-joyeria.vercel.app/en/events/anniversaries",
+            provider: {
+                "@type": "Organization",
+                name: "ORO INCA Jewelry",
+            },
+        }}
+    />
+
+    <!-- Hero Section -->
+    <section
+        class="relative h-[60vh] flex items-center justify-center overflow-hidden"
+    >
+        <div class="absolute inset-0 bg-black/40 z-10"></div>
+        <img
+            src="/assets/img/aniversarios-hero.jpg"
+            alt="Anniversary Jewelry"
+            class="absolute inset-0 w-full h-full object-cover"
+        />
+        <div class="relative z-20 text-center text-white px-6">
+            <h1
+                class="text-5xl md:text-6xl font-bold mb-6 font-serif tracking-wide"
+            >
+                Anniversaries
+            </h1>
+            <p
+                class="text-xl md:text-2xl font-light tracking-wider max-w-2xl mx-auto"
+            >
+                Celebrating eternal love
+            </p>
+        </div>
+    </section>
+
+    <!-- Introduction -->
+    <section class="py-20 bg-white">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <p class="text-gray-600 text-lg leading-relaxed mb-8">
+                Each year together is a new chapter in your love story.
+                Celebrate that special bond with a jewel that symbolizes the
+                path traveled and the dreams yet to come.
+            </p>
+            <div class="w-24 h-1 bg-[#d4af37] mx-auto"></div>
+        </div>
+    </section>
+
+    <!-- Collections Grid -->
+    <section class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Rings -->
+                <a
+                    href={getPath("/products?category=anillos")}
+                    class="group relative h-96 overflow-hidden rounded-2xl cursor-pointer"
+                >
+                    <img
+                        src="/assets/img/anillos-aniversario.jpg"
+                        alt="Anniversary Rings"
+                        class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    />
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-8"
+                    >
+                        <div class="text-white">
+                            <h3 class="text-2xl font-bold mb-2">
+                                Anniversary Rings
+                            </h3>
+                            <p class="text-white/80 text-sm">
+                                Symbol of renovated commitment
+                            </p>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Necklaces -->
+                <a
+                    href={getPath("/products?category=collares")}
+                    class="group relative h-96 overflow-hidden rounded-2xl cursor-pointer"
+                >
+                    <img
+                        src="/assets/img/collares-aniversario.jpg"
+                        alt="Anniversary Necklaces"
+                        class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    />
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-8"
+                    >
+                        <div class="text-white">
+                            <h3 class="text-2xl font-bold mb-2">
+                                Necklaces & Pendants
+                            </h3>
+                            <p class="text-white/80 text-sm">
+                                Wear your love close to the heart
+                            </p>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Bracelets -->
+                <a
+                    href={getPath("/products?category=pulseras")}
+                    class="group relative h-96 overflow-hidden rounded-2xl cursor-pointer"
+                >
+                    <img
+                        src="/assets/img/pulseras-aniversario.jpg"
+                        alt="Anniversary Bracelets"
+                        class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    />
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-8"
+                    >
+                        <div class="text-white">
+                            <h3 class="text-2xl font-bold mb-2">
+                                Elegant Bracelets
+                            </h3>
+                            <p class="text-white/80 text-sm">
+                                Details that make the difference
+                            </p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gift Guide -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="order-2 md:order-1">
+                    <h2 class="text-3xl font-bold text-[#16273b] mb-6">
+                        Traditional Gifts by Year
+                    </h2>
+                    <div class="space-y-6">
+                        <div class="flex gap-4">
+                            <div
+                                class="w-12 h-12 bg-[#f0f9ff] text-[#16273b] rounded-full flex items-center justify-center font-bold flex-shrink-0"
+                            >
+                                1
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-lg mb-1">
+                                    First Anniversary
+                                </h3>
+                                <p class="text-gray-600">
+                                    Gold is the traditional metal. A simple and
+                                    elegant gold chain or a minimalist ring.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div
+                                class="w-12 h-12 bg-[#f0f9ff] text-[#16273b] rounded-full flex items-center justify-center font-bold flex-shrink-0"
+                            >
+                                5
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-lg mb-1">
+                                    Fifth Anniversary
+                                </h3>
+                                <p class="text-gray-600">
+                                    Saphiro or Silver. A silver set with
+                                    precious stones is ideal.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div
+                                class="w-12 h-12 bg-[#f0f9ff] text-[#16273b] rounded-full flex items-center justify-center font-bold flex-shrink-0"
+                            >
+                                10
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-lg mb-1">
+                                    Tenth Anniversary
+                                </h3>
+                                <p class="text-gray-600">
+                                    Diamond. A diamond ring to celebrate an
+                                    eternity together.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div
+                                class="w-12 h-12 bg-[#f0f9ff] text-[#16273b] rounded-full flex items-center justify-center font-bold flex-shrink-0"
+                            >
+                                25
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-lg mb-1">
+                                    Silver Anniversary
+                                </h3>
+                                <p class="text-gray-600">
+                                    The 25 years are celebrated with Silver. An
+                                    exclusive piece to commemorate this
+                                    milestone.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div
+                                class="w-12 h-12 bg-[#f0f9ff] text-[#16273b] rounded-full flex items-center justify-center font-bold flex-shrink-0"
+                            >
+                                50
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-lg mb-1">
+                                    Golden Anniversary
+                                </h3>
+                                <p class="text-gray-600">
+                                    50 years of love deserve the best 18k Gold.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="order-1 md:order-2 h-[600px] rounded-2xl overflow-hidden shadow-xl"
+                >
+                    <img
+                        src="/assets/img/regalos-aniversario.jpg"
+                        alt="Anniversary Gifts"
+                        class="w-full h-full object-cover"
+                    />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-20 bg-[#16273b] text-white text-center">
+        <div class="max-w-4xl mx-auto px-6">
+            <h2 class="text-3xl font-bold mb-6">Find the Perfect Gift</h2>
+            <p class="text-gray-300 mb-8 max-w-2xl mx-auto">
+                Explore our complete catalog and find that piece that expresses
+                your eternal love.
+            </p>
+            <a
+                href={getPath("/products")}
+                class="inline-block bg-[#d4af37] hover:bg-[#b8941f] text-[#16273b] px-10 py-4 rounded-full font-semibold transition-colors"
+            >
+                View Collection
+            </a>
+        </div>
+    </section>
+</Layout>

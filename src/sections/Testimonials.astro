@@ -1,0 +1,52 @@
+---
+import { TESTIMONIALS } from "../data/testimonials";
+import { useTranslations, type Language } from "../i18n";
+
+interface Props {
+  lang?: string;
+}
+
+const { lang = "es" } = Astro.props;
+const t = useTranslations(lang as Language);
+---
+
+<section class="py-28 bg-gray-50">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-20">
+      <h2 class="text-4xl font-bold text-[#16273b]">
+        {t("home.testimonialsTitle")}
+      </h2>
+      <p class="text-gray-600 mt-4">Experiencias reales con ORO INCA Joyería</p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-10">
+      {
+        TESTIMONIALS.map(({ id, name, rating, avatar }) => (
+          <article class="bg-white p-8 rounded-md shadow-lg">
+            <div class="flex items-center gap-4 mb-6">
+              <img
+                src={avatar}
+                alt={name}
+                class="w-14 h-14 rounded-full object-cover"
+                loading="lazy"
+              />
+              <div>
+                <h4 class="font-semibold text-[#16273b]">{name}</h4>
+                <p class="text-xs text-gray-500">
+                  {t(`testimonials.${id}.location`)}
+                </p>
+              </div>
+            </div>
+
+            <p class="text-sm text-gray-600 mb-6">
+              “{t(`testimonials.${id}.comment`)}”
+            </p>
+            <div class="flex gap-1 text-[#d4af37] text-lg">
+              {Array.from({ length: rating }).map(() => "★")}
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

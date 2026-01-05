@@ -1,0 +1,361 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getLocalizedPath, useTranslations } from "../../i18n";
+
+const currentLang = "en";
+const t = useTranslations(currentLang);
+const getPath = (path: string) => getLocalizedPath(path, currentLang);
+---
+
+<Layout title="Eternal Commitment | ORO INCA Jewelry">
+    <section class="pt-24 pb-16">
+        <div class="max-w-7xl mx-auto px-6">
+            <!-- Hero Section -->
+            <div
+                class="text-center mb-16 bg-gradient-to-br from-[#16273b] to-[#0f1b2d] rounded-3xl p-12 md:p-16 text-white"
+            >
+                <h1 class="text-4xl md:text-6xl font-bold mb-6">
+                    Eternal Commitment
+                </h1>
+                <p
+                    class="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto mb-8"
+                >
+                    Celebrating the most special moments of your life with
+                    unique jewelry designed especially for unforgettable
+                    occasions.
+                </p>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <a
+                        href={getPath("/products?category=anillos#anillos")}
+                        class="bg-[#d4af37] hover:bg-[#b8941f] text-[#16273b] px-8 py-4 rounded-full font-semibold text-lg transition-colors"
+                    >
+                        View Engagement Rings
+                    </a>
+                    <a
+                        href={getPath("/contact")}
+                        class="bg-white/10 hover:bg-white/20 text-white px-8 py-4 rounded-full font-semibold text-lg transition-colors border border-white/20"
+                    >
+                        Request Quote
+                    </a>
+                </div>
+            </div>
+
+            <!-- Event Types -->
+            <div class="mb-20">
+                <h2
+                    class="text-3xl md:text-4xl font-bold text-[#16273b] mb-12 text-center"
+                >
+                    Our Services for Special Events
+                </h2>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Wedding -->
+                    <div
+                        class="bg-white rounded-2xl p-8 shadow-md hover:shadow-xl transition-shadow"
+                    >
+                        <div class="text-5xl mb-4">💒</div>
+                        <h3 class="text-2xl font-bold text-[#16273b] mb-4">
+                            Weddings
+                        </h3>
+                        <p class="text-gray-600 mb-6">
+                            Unique and personalized wedding rings. We will
+                            create the perfect piece to symbolize your eternal
+                            love.
+                        </p>
+                        <ul class="space-y-2 text-gray-700 mb-6">
+                            <li class="flex items-center gap-2">
+                                <span class="text-[#d4af37]">✓</span>
+                                <span>Custom Design</span>
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <span class="text-[#d4af37]">✓</span>
+                                <span>Premium Materials</span>
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <span class="text-[#d4af37]">✓</span>
+                                <span>Custom Engraving</span>
+                            </li>
+                        </ul>
+                        <a
+                            href={getPath("/events/bodas")}
+                            class="inline-block text-[#d4af37] font-semibold hover:underline"
+                        >
+                            Explore Weddings →
+                        </a>
+                    </div>
+
+                    <!-- Engagement -->
+                    <div
+                        class="bg-white rounded-2xl p-8 shadow-md hover:shadow-xl transition-shadow"
+                    >
+                        <div class="text-5xl mb-4">💍</div>
+                        <h3 class="text-2xl font-bold text-[#16273b] mb-4">
+                            Engagement
+                        </h3>
+                        <p class="text-gray-600 mb-6">
+                            Engagement rings that capture the essence of your
+                            love story. Exclusive designs for the perfect
+                            moment.
+                        </p>
+                        <ul class="space-y-2 text-gray-700 mb-6">
+                            <li class="flex items-center gap-2">
+                                <span class="text-[#d4af37]">✓</span>
+                                <span>Stone Selection</span>
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <span class="text-[#d4af37]">✓</span>
+                                <span>Exclusive Designs</span>
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <span class="text-[#d4af37]">✓</span>
+                                <span>Personalized Advice</span>
+                            </li>
+                        </ul>
+                        <a
+                            href={getPath("/events/compromiso")}
+                            class="inline-block text-[#d4af37] font-semibold hover:underline"
+                        >
+                            Explore Engagement →
+                        </a>
+                    </div>
+
+                    <!-- Anniversaries -->
+                    <div
+                        class="bg-white rounded-2xl p-8 shadow-md hover:shadow-xl transition-shadow"
+                    >
+                        <div class="text-5xl mb-4">🎉</div>
+                        <h3 class="text-2xl font-bold text-[#16273b] mb-4">
+                            Anniversaries
+                        </h3>
+                        <p class="text-gray-600 mb-6">
+                            Celebrate each year of love with a special jewel.
+                            Renew your vows with pieces that mark every
+                            important milestone.
+                        </p>
+                        <ul class="space-y-2 text-gray-700 mb-6">
+                            <li class="flex items-center gap-2">
+                                <span class="text-[#d4af37]">✓</span>
+                                <span>Commemorative Pieces</span>
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <span class="text-[#d4af37]">✓</span>
+                                <span>Renewed Designs</span>
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <span class="text-[#d4af37]">✓</span>
+                                <span>Special Shipping</span>
+                            </li>
+                        </ul>
+                        <a
+                            href={getPath("/events/aniversarios")}
+                            class="inline-block text-[#d4af37] font-semibold hover:underline"
+                        >
+                            Explore Anniversaries →
+                        </a>
+                    </div>
+
+                    <!-- Quinceañeras -->
+                    <div
+                        class="bg-white rounded-2xl p-8 shadow-md hover:shadow-xl transition-shadow"
+                    >
+                        <div class="text-5xl mb-4">👑</div>
+                        <h3 class="text-2xl font-bold text-[#16273b] mb-4">
+                            Quinceañeras
+                        </h3>
+                        <p class="text-gray-600 mb-6">
+                            Become the queen of the day with our exclusive
+                            jewelry for quinceañeras. Elegance and
+                            sophistication.
+                        </p>
+                        <ul class="space-y-2 text-gray-700 mb-6">
+                            <li class="flex items-center gap-2">
+                                <span class="text-[#d4af37]">✓</span>
+                                <span>Elegant Designs</span>
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <span class="text-[#d4af37]">✓</span>
+                                <span>Tiara and Accessories</span>
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <span class="text-[#d4af37]">✓</span>
+                                <span>Complete Sets</span>
+                            </li>
+                        </ul>
+                        <a
+                            href={getPath("/products")}
+                            class="inline-block text-[#d4af37] font-semibold hover:underline"
+                        >
+                            View Options →
+                        </a>
+                    </div>
+
+                    <!-- Batizms (Bautizos) -->
+                    <div
+                        class="bg-white rounded-2xl p-8 shadow-md hover:shadow-xl transition-shadow"
+                    >
+                        <div class="text-5xl mb-4">👶</div>
+                        <h3 class="text-2xl font-bold text-[#16273b] mb-4">
+                            Christenings
+                        </h3>
+                        <p class="text-gray-600 mb-6">
+                            Delicate and safe jewelry for the little ones.
+                            Special pieces to celebrate this sacred moment.
+                        </p>
+                        <ul class="space-y-2 text-gray-700 mb-6">
+                            <li class="flex items-center gap-2">
+                                <span class="text-[#d4af37]">✓</span>
+                                <span>Safe Designs</span>
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <span class="text-[#d4af37]">✓</span>
+                                <span>Hypoallergenic Materials</span>
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <span class="text-[#d4af37]">✓</span>
+                                <span>Custom Engraving</span>
+                            </li>
+                        </ul>
+                        <a
+                            href={getPath("/contact")}
+                            class="inline-block text-[#d4af37] font-semibold hover:underline"
+                        >
+                            Request →
+                        </a>
+                    </div>
+
+                    <!-- Graduations -->
+                    <div
+                        class="bg-white rounded-2xl p-8 shadow-md hover:shadow-xl transition-shadow"
+                    >
+                        <div class="text-5xl mb-4">🎓</div>
+                        <h3 class="text-2xl font-bold text-[#16273b] mb-4">
+                            Graduations
+                        </h3>
+                        <p class="text-gray-600 mb-6">
+                            Celebrate your academic achievements with special
+                            jewelry. Pieces that mark the beginning of a new
+                            stage.
+                        </p>
+                        <ul class="space-y-2 text-gray-700 mb-6">
+                            <li class="flex items-center gap-2">
+                                <span class="text-[#d4af37]">✓</span>
+                                <span>Modern Designs</span>
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <span class="text-[#d4af37]">✓</span>
+                                <span>Graduation Rings</span>
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <span class="text-[#d4af37]">✓</span>
+                                <span>Personalization</span>
+                            </li>
+                        </ul>
+                        <a
+                            href={getPath("/products")}
+                            class="inline-block text-[#d4af37] font-semibold hover:underline"
+                        >
+                            View Collection →
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Process -->
+            <div class="bg-gray-50 rounded-3xl p-8 md:p-12 mb-20">
+                <h2
+                    class="text-3xl md:text-4xl font-bold text-[#16273b] mb-12 text-center"
+                >
+                    Our Process
+                </h2>
+
+                <div class="grid md:grid-cols-4 gap-8">
+                    <div class="text-center">
+                        <div
+                            class="w-16 h-16 bg-[#d4af37] rounded-full flex items-center justify-center text-white font-bold text-2xl mx-auto mb-4"
+                        >
+                            1
+                        </div>
+                        <h3 class="font-semibold text-lg text-gray-900 mb-2">
+                            Consultation
+                        </h3>
+                        <p class="text-gray-600 text-sm">
+                            Contact us to share your vision and needs.
+                        </p>
+                    </div>
+
+                    <div class="text-center">
+                        <div
+                            class="w-16 h-16 bg-[#d4af37] rounded-full flex items-center justify-center text-white font-bold text-2xl mx-auto mb-4"
+                        >
+                            2
+                        </div>
+                        <h3 class="font-semibold text-lg text-gray-900 mb-2">
+                            Design
+                        </h3>
+                        <p class="text-gray-600 text-sm">
+                            We create a personalized design based on your
+                            preferences.
+                        </p>
+                    </div>
+
+                    <div class="text-center">
+                        <div
+                            class="w-16 h-16 bg-[#d4af37] rounded-full flex items-center justify-center text-white font-bold text-2xl mx-auto mb-4"
+                        >
+                            3
+                        </div>
+                        <h3 class="font-semibold text-lg text-gray-900 mb-2">
+                            Approval
+                        </h3>
+                        <p class="text-gray-600 text-sm">
+                            We review the design together and make adjustments
+                            if necessary.
+                        </p>
+                    </div>
+
+                    <div class="text-center">
+                        <div
+                            class="w-16 h-16 bg-[#d4af37] rounded-full flex items-center justify-center text-white font-bold text-2xl mx-auto mb-4"
+                        >
+                            4
+                        </div>
+                        <h3 class="font-semibold text-lg text-gray-900 mb-2">
+                            Delivery
+                        </h3>
+                        <p class="text-gray-600 text-sm">
+                            Your unique jewel is ready for the special day.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA Final -->
+            <div
+                class="bg-gradient-to-r from-[#d4af37] to-[#b8941f] rounded-3xl p-12 text-center text-[#16273b]"
+            >
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                    Ready to create something special?
+                </h2>
+                <p class="text-lg mb-8 opacity-90">
+                    Schedule a free consultation and discover how we can make
+                    your event even more memorable.
+                </p>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <a
+                        href={getPath("/contact")}
+                        class="bg-[#16273b] hover:bg-[#0f1b2d] text-white px-8 py-4 rounded-full font-semibold text-lg transition-colors"
+                    >
+                        Schedule Consultation
+                    </a>
+                    <a
+                        href="https://wa.me/51926946362"
+                        target="_blank"
+                        class="bg-white hover:bg-gray-100 text-[#16273b] px-8 py-4 rounded-full font-semibold text-lg transition-colors"
+                    >
+                        WhatsApp
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+</Layout>

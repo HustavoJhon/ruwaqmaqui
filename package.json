@@ -1,29 +1,21 @@
 {
-  "name": "ruwaqmaqui",
+  "name": "oro-inca-joyeria",
   "type": "module",
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
-    "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "astro": "astro"
   },
   "dependencies": {
-    "@tailwindcss/vite": "4.1.11",
-    "astro": "5.12.8",
-    "tailwindcss": "4.1.11"
+    "@astrojs/sitemap": "^3.6.0",
+    "@tailwindcss/vite": "^4.1.18",
+    "astro": "^5.16.6"
   },
   "devDependencies": {
-    "astro-eslint-parser": "1.2.2",
-    "eslint": "9.32.0",
-    "eslint-plugin-astro": "1.3.1",
-    "neostandard": "0.12.2",
-    "prettier": "3.6.2",
-    "prettier-plugin-astro": "0.14.1",
-    "typescript-eslint": "8.39.0"
+    "autoprefixer": "^10.4.23",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.1.18"
   }
 }

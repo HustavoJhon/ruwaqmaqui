@@ -1,0 +1,95 @@
+---
+import { PRODUCTS } from "../data/products";
+import ProductCard from "../components/ProductCard.astro";
+
+const { category } = Astro.props as {
+  category?: string;
+};
+
+const categories = [
+  {
+    key: "aretes",
+    title: "Aretes",
+    description: "Detalles que iluminan tu rostro con elegancia.",
+  },
+  {
+    key: "collares",
+    title: "Collares",
+    description: "Piezas que realzan tu estilo y personalidad.",
+  },
+  {
+    key: "anillos",
+    title: "Anillos",
+    description: "Símbolos de fuerza, amor y tradición.",
+  },
+  {
+    key: "pulseras",
+    title: "Pulseras",
+    description: "Equilibrio perfecto entre delicadeza y carácter.",
+  },
+];
+
+const visibleCategories = category
+  ? categories.filter((c) => c.key === category)
+  : categories;
+---
+
+
+<div class="bg-white">
+
+  <div class="max-w-7xl mx-auto px-6 space-y-32">
+
+    {visibleCategories.map((cat) => {
+      const productsByCategory = PRODUCTS.filter(
+        (p) => p.category === cat.key
+      );
+
+      if (productsByCategory.length === 0) return null;
+
+      return (
+        <section
+          id={cat.key}
+          class="scroll-mt-32"
+        >
+
+          <!-- HEADER -->
+          <div class="mb-12 max-w-3xl">
+            <h2 class="text-4xl font-bold text-[#16273b]">
+              {cat.title}
+            </h2>
+            <p class="text-gray-600 mt-3 text-lg">
+              {cat.description}
+            </p>
+          </div>
+
+          <!-- GRID -->
+          <div class="grid gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+            {productsByCategory.map((product) => (
+              <ProductCard
+                id={product.id}
+                name={product.name}
+                description={product.description}
+                price={product.price}
+                oldPrice={product.oldPrice}
+                image={product.image}
+                badge={product.badge}
+              />
+            ))}
+          </div>
+
+        </section>
+      );
+    })}
+
+  </div>
+</div>
+
+<script is:inline>
+  const hash = window.location.hash;
+  if (hash) {
+    const el = document.querySelector(hash);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+    }
+  }
+</script>

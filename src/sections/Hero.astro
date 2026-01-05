@@ -1,0 +1,112 @@
+---
+import { HERO_IMAGES } from "../data/hero";
+import { useTranslations, type Language } from "../i18n";
+
+interface Props {
+  lang?: string;
+}
+
+const { lang = "es" } = Astro.props;
+const t = useTranslations(lang as Language);
+const collectionLink = lang === "en" ? "/en/products" : "/products";
+const aboutLink = lang === "en" ? "/en/about" : "/nosotros";
+---
+
+<section class="relative min-h-[87vh] overflow-hidden">
+  <!-- SLIDES -->
+  <div class="absolute inset-0">
+    {
+      HERO_IMAGES.map((img, i) => (
+        <div
+          class={`hero-slide absolute inset-0 bg-cover bg-center ${i === 0 ? "active" : ""}`}
+          style={`background-image: url('${img.src}')`}
+        />
+      ))
+    }
+  </div>
+
+  <!-- OVERLAY -->
+  <div
+    class="absolute inset-0 bg-gradient-to-b from-ink/98 via-ink/95 to-ink/98"
+  >
+  </div>
+
+  <!-- CONTENIDO -->
+  <div
+    class="relative z-10 max-w-7xl mx-auto px-6 min-h-[85vh] flex items-center"
+  >
+    <div class="max-w-xl space-y-8">
+      <!-- Badge -->
+      <span
+        class="inline-block text-xs tracking-widest uppercase text-[#d4af37] bg-[#d4af37]/10 px-4 py-2 rounded-full"
+      >
+        {t("hero.badge")}
+      </span>
+
+      <!-- Título -->
+      <h1 class="text-5xl md:text-6xl font-bold leading-tight text-white">
+          ARTESANIA <span class="block text-[#d4af37]">{t("hero.subtitle")}</span>
+      </h1>
+
+      <!-- Descripción -->
+      <p class="text-white/80 text-lg leading-relaxed">
+        {t("hero.description")}
+      </p>
+
+      <!-- CTAs -->
+      <div class="flex flex-wrap gap-4 pt-4">
+        <a
+          href={collectionLink}
+          class="inline-flex items-center justify-center bg-[#d4af37] text-[#16273b] px-7 py-3 rounded-full font-semibold text-sm tracking-wide hover:bg-[#b5952f] transition transform hover:-translate-y-0.5"
+        >
+          {t("hero.ctaCollection")}
+        </a>
+        <a
+          href={aboutLink}
+          class="inline-flex items-center justify-center border border-white/20 text-white px-7 py-3 rounded-full font-semibold text-sm tracking-wide hover:bg-white/10 transition transform hover:-translate-y-0.5"
+        >
+          {t("hero.ctaStory")}
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER/FEATURES DECORATIVO -->
+  <div
+    class="absolute bottom-0 left-0 right-0 z-20 border-t border-white/10 bg-ink/50 backdrop-blur-sm"
+  >
+    <div class="max-w-7xl mx-auto px-6 py-6">
+      <div
+        class="grid grid-cols-3 gap-4 text-center text-white/60 text-xs md:text-sm uppercase tracking-widest"
+      >
+        <div>{t("hero.feature1")}</div>
+        <div class="border-l border-white/10">{t("hero.feature2")}</div>
+        <div class="border-l border-white/10">{t("hero.feature3")}</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero-slide {
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out;
+  }
+  .hero-slide.active {
+    opacity: 0.6; /* Ajusta la opacidad de la imagen de fondo */
+  }
+</style>
+
+<script>
+  // Script simple para rotar slides
+  const slides = document.querySelectorAll(".hero-slide");
+  let index = 0;
+
+  if (slides.length > 0) {
+    setInterval(() => {
+      slides[index].classList.remove("active");
+      index = (index + 1) % slides.length;
+      slides[index].classList.add("active");
+    }, 5000);
+  }
+</script>

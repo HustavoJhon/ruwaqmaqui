@@ -1,0 +1,339 @@
+---
+import type { ImageMetadata } from "astro";
+import { PRODUCTS } from "../data/products";
+import ProductCard from "../components/ProductCard.astro";
+import { useTranslations, getProductTranslation, type Language } from "../i18n";
+
+interface Props {
+  lang?: string;
+}
+
+const { lang = "es" } = Astro.props;
+const currentLang = (lang === "en" || lang === "es") ? lang : "es";
+const t = useTranslations(currentLang as Language);
+const collectionLink = currentLang === "en" ? "/en/products" : "/products";
+
+// Filtramos productos destacados (por ejemplo los primeros 4 o los que tengan flag featured)
+const featuredProducts = PRODUCTS.slice(0, 4);
+---
+
+<section class="py-16 md:py-28 bg-gray-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 space-y-16 md:space-y-24">
+    <!-- ================= DESTACADOS ================= -->
+    <div>
+      <div class="text-center mb-12 md:mb-16">
+        <h2 class="text-4xl md:text-5xl font-bold text-gray-900">
+          {t("home.featuredTitle")}
+        </h2>
+        <p class="mt-4 text-lg text-gray-600">
+          {t("home.featuredSubtitle")}
+        </p>
+      </div>
+
+      <div
+        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8"
+      >
+        {
+          featuredProducts.map((product) => {
+            const productTrans = getProductTranslation(product.id, currentLang as Language);
+            return (
+              <ProductCard
+                id={product.id}
+                name={productTrans?.name || product.name}
+                description={productTrans?.description || product.description}
+                price={product.price}
+                oldPrice={product.oldPrice}
+                image={product.image}
+                badge={productTrans?.badge || product.badge}
+                lang={currentLang}
+              />
+            );
+          })
+        }
+      </div>
+    </div>
+
+    <!-- ================= CARRUSEL ================= -->
+    <div class="flex flex-col md:flex-row gap-8 md:gap-12 items-start">
+      <!-- TEXTO IZQUIERDA -->
+      <div class="w-full md:w-1/3 space-y-4 md:space-y-6 px-2">
+        <h3 class="text-2xl md:text-3xl font-bold">
+          {t("home.promotionsTitle")}
+        </h3>
+        <p class="text-gray-700 leading-relaxed text-sm md:text-base">
+          {t("home.promotionsSubtitle")}
+        </p>
+
+        <a
+          href={collectionLink}
+          class="inline-block mt-4 rounded-full bg-[#16273b] px-5 md:px-6 py-2.5 md:py-3 text-sm md:text-base text-white font-semibold hover:bg-[#0f1b2d] transition"
+        >
+          {t("common.verMas")}
+        </a>
+      </div>
+
+      <!-- CARRUSEL DERECHA -->
+      <div class="w-full md:w-2/3 relative">
+        <!-- CONTENEDOR CON SCROLL HORIZONTAL -->
+        <div class="relative px-8 md:px-10">
+          <div
+            id="products-carousel"
+            class="flex gap-4 md:gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory scrollbar-hide pb-4"
+            style="scrollbar-width: none; -ms-overflow-style: none;"
+          >
+            {
+              PRODUCTS.map((product) => {
+                const productTrans = getProductTranslation(product.id, currentLang as Language);
+                return (
+                  <div class="snap-start flex-shrink-0 w-[240px] sm:w-[260px] md:w-64">
+                    <ProductCard
+                      id={product.id}
+                      name={productTrans?.name || product.name}
+                      description={productTrans?.description || product.description}
+                      price={product.price}
+                      oldPrice={product.oldPrice}
+                      image={product.image}
+                      badge={productTrans?.badge || product.badge}
+                      lang={currentLang}
+                    />
+                  </div>
+                );
+              })
+            }
+          </div>
+
+          <!-- FLECHA IZQUIERDA -->
+          <button
+            id="btn-prev"
+            class="absolute top-1/2 left-0 -translate-y-1/2 bg-white/95 hover:bg-white text-gray-700 rounded-full p-2 md:p-3 shadow-lg transition-all hover:scale-110 z-10"
+            aria-label="Anterior"
+          >
+            <svg
+              class="w-5 h-5 md:w-6 md:h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M15 19l-7-7 7-7"></path>
+            </svg>
+          </button>
+
+          <!-- FLECHA DERECHA -->
+          <button
+            id="btn-next"
+            class="absolute top-1/2 right-0 -translate-y-1/2 bg-white/95 hover:bg-white text-gray-700 rounded-full p-2 md:p-3 shadow-lg transition-all hover:scale-110 z-10"
+            aria-label="Siguiente"
+          >
+            <svg
+              class="w-5 h-5 md:w-6 md:h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9 5l7 7-7 7"></path>
+            </svg>
+          </button>
+        </div>
+
+        <!-- INDICADORES (OPCIONAL) -->
+        <div id="carousel-indicators" class="flex justify-center gap-2 mt-6">
+          <!-- Se generan dinámicamente con JS -->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ESTILOS ================= -->
+<style>
+  /* Ocultar scrollbar pero mantener funcionalidad */
+  #products-carousel::-webkit-scrollbar {
+    display: none;
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  /* Smooth scroll behavior */
+  #products-carousel {
+    scroll-behavior: smooth;
+  }
+
+  /* Indicadores */
+  .indicator {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #d1d5db;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+
+  .indicator.active {
+    background-color: #16273b;
+    width: 24px;
+    border-radius: 4px;
+  }
+</style>
+
+<!-- ================= SCRIPT ================= -->
+<script>
+  const carousel = document.getElementById("products-carousel");
+  const btnPrev = document.getElementById("btn-prev");
+  const btnNext = document.getElementById("btn-next");
+  const indicatorsContainer = document.getElementById("carousel-indicators");
+
+  let autoScrollInterval: number;
+  let isUserInteracting = false;
+
+  // Calcular ancho dinámico de tarjeta
+  function getCardWidth(): number {
+    const firstCard = carousel?.querySelector('div[class*="snap-start"]');
+    if (!firstCard) return 260;
+    const gap = window.innerWidth >= 768 ? 24 : 16;
+    return (firstCard as HTMLElement).offsetWidth + gap;
+  }
+
+  // Función de scroll
+  function scrollCarousel(direction: number) {
+    if (!carousel) return;
+
+    const cardWidth = getCardWidth();
+    carousel.scrollBy({
+      left: direction * cardWidth,
+      behavior: "smooth",
+    });
+  }
+
+  // Auto-scroll
+  function startAutoScroll() {
+    autoScrollInterval = window.setInterval(() => {
+      if (!carousel || isUserInteracting) return;
+
+      const maxScroll = carousel.scrollWidth - carousel.clientWidth;
+
+      if (carousel.scrollLeft >= maxScroll - 10) {
+        carousel.scrollTo({ left: 0, behavior: "smooth" });
+      } else {
+        scrollCarousel(1);
+      }
+    }, 4000);
+  }
+
+  // Detener auto-scroll
+  function stopAutoScroll() {
+    window.clearInterval(autoScrollInterval);
+  }
+
+  // Crear indicadores
+  function createIndicators() {
+    if (!carousel || !indicatorsContainer) return;
+
+    const cardWidth = getCardWidth();
+    const totalCards = carousel.children.length;
+    const visibleCards = Math.floor(carousel.clientWidth / cardWidth);
+    const totalPages = Math.ceil(totalCards - visibleCards + 1);
+
+    indicatorsContainer.innerHTML = "";
+
+    for (let i = 0; i < totalPages; i++) {
+      const indicator = document.createElement("div");
+      indicator.className = "indicator";
+      indicator.addEventListener("click", () => {
+        if (!carousel) return;
+        carousel.scrollTo({
+          left: i * cardWidth,
+          behavior: "smooth",
+        });
+      });
+      indicatorsContainer.appendChild(indicator);
+    }
+
+    updateActiveIndicator();
+  }
+
+  // Actualizar indicador activo
+  function updateActiveIndicator() {
+    if (!carousel || !indicatorsContainer) return;
+
+    const cardWidth = getCardWidth();
+    const currentIndex = Math.round(carousel.scrollLeft / cardWidth);
+    const indicators = indicatorsContainer.querySelectorAll(".indicator");
+
+    indicators.forEach((indicator, index) => {
+      if (index === currentIndex) {
+        indicator.classList.add("active");
+      } else {
+        indicator.classList.remove("active");
+      }
+    });
+  }
+
+  // Event Listeners
+  btnPrev?.addEventListener("click", () => {
+    scrollCarousel(-1);
+    isUserInteracting = true;
+    stopAutoScroll();
+    setTimeout(() => {
+      isUserInteracting = false;
+      startAutoScroll();
+    }, 5000);
+  });
+
+  btnNext?.addEventListener("click", () => {
+    scrollCarousel(1);
+    isUserInteracting = true;
+    stopAutoScroll();
+    setTimeout(() => {
+      isUserInteracting = false;
+      startAutoScroll();
+    }, 5000);
+  });
+
+  carousel?.addEventListener("mouseenter", () => {
+    isUserInteracting = true;
+    stopAutoScroll();
+  });
+
+  carousel?.addEventListener("mouseleave", () => {
+    isUserInteracting = false;
+    startAutoScroll();
+  });
+
+  // Touch events para móvil
+  carousel?.addEventListener("touchstart", () => {
+    isUserInteracting = true;
+    stopAutoScroll();
+  });
+
+  carousel?.addEventListener("touchend", () => {
+    setTimeout(() => {
+      isUserInteracting = false;
+      startAutoScroll();
+    }, 3000);
+  });
+
+  // Actualizar indicadores al hacer scroll
+  carousel?.addEventListener("scroll", updateActiveIndicator);
+
+  // Recalcular al cambiar tamaño de ventana
+  window.addEventListener("resize", () => {
+    createIndicators();
+  });
+
+  // Inicializar
+  if (carousel) {
+    createIndicators();
+    startAutoScroll();
+  }
+</script>

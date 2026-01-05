@@ -1,0 +1,46 @@
+pnp---
+import { PROMOTIONS } from "../data/promotions";
+---
+
+<section class="py-28 bg-[#16273b] text-white">
+  <div class="max-w-7xl mx-auto px-6">
+
+    <div class="text-center mb-16">
+      <h2 class="text-4xl font-bold text-[#d4af37]">
+        Promociones Especiales
+      </h2>
+      <p class="text-white/80 mt-4">
+        Aprovecha nuestras mejores ofertas
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-10">
+      {
+        PROMOTIONS.map(({ title, description, image, badge }) => (
+          <article class="relative group overflow-hidden rounded-md">
+
+            <img
+              src={image}
+              alt={title}
+              class="h-[380px] w-full object-cover transition-transform duration-700 group-hover:scale-110"
+              loading="lazy"
+            />
+
+            <div class="absolute inset-0 bg-black/50"></div>
+
+            <div class="absolute top-4 left-4 bg-[#d4af37] text-[#16273b] text-xs font-bold px-4 py-1 rounded-full">
+              {badge}
+            </div>
+
+            <div class="absolute bottom-0 p-8">
+              <h3 class="text-xl font-bold">{title}</h3>
+              <p class="text-sm text-white/80">{description}</p>
+            </div>
+
+          </article>
+        ))
+      }
+    </div>
+
+  </div>
+</section>
