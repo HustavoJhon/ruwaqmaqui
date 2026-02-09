@@ -1,12 +1,18 @@
-
-
 body {
   font-family: "Inter", system-ui, sans-serif;
+  line-height: 1.6;
 }
 
-.heading {
-  font-family: "Playfair Display", serif;
-  letter-spacing: 0.2em;
+.heading,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 600;
+  letter-spacing: 0.02em;
 }
 
 .text-muted {

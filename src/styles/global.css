@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Inter:wght@300;400;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap");
 @import "tailwindcss";
 
 @tailwind base;
@@ -8,10 +8,18 @@
 @import "./variables.css";
 @import "./typography.css";
 
+:root {
+  /* Paleta Ruwaq Maqui - Artisan Textiles */
+  --ruwaq-light: #f1ede1;
+  --ruwaq-soft: #cdc3bb;
+  --ruwaq-primary: #ac4a2a;
+  --ruwaq-dark: #4e0301;
+}
+
 html,
 body {
-  background-color: var(--color-ink);
-  color: var(--color-light);
+  background-color: var(--ruwaq-light);
+  color: var(--ruwaq-dark);
 }
 
 html {

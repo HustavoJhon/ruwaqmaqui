@@ -15,7 +15,7 @@ import { getCurrentLanguage } from "../i18n";
 
 // Detectar idioma desde URL
 const currentLang = getCurrentLanguage(Astro);
-const htmlLang = currentLang === 'en' ? 'en' : 'es-PE';
+const htmlLang = currentLang === "en" ? "en" : "es-PE";
 ---
 
 <!doctype html>
@@ -28,44 +28,45 @@ const htmlLang = currentLang === 'en' ? 'en' : 'es-PE';
       content="HFY4hbNLPDFqWNVTI119L5TEeT-tIjjgs398kHZHGcI"
     />
     <SEO
-      title={currentLang === 'en' 
-        ? "ORO INCA Jewelry | Buy Gold and Silver Jewelry in Peru - National Shipping"
-        : "ORO INCA Joyería | Comprar Joyas de Oro y Plata en Perú - Envío Nacional"}
-      description={currentLang === 'en'
-        ? "Buy 18k gold and 925 silver jewelry at ORO INCA Jewelry Peru. Engagement rings, earrings, necklaces, bracelets and chains with guarantee. Free shipping to Lima, Cusco, Arequipa. ✓ Affordable prices ✓ Exclusive designs"
-        : "Compra joyas de oro 18k y plata 925 en ORO INCA Joyería Perú. Anillos de compromiso, aretes, collares, pulseras y cadenas con garantía. Envío gratis a Lima, Cusco, Arequipa. ✓ Precios accesibles ✓ Diseños exclusivos"}
+      title={currentLang === "en"
+        ? "RUWAQ MAQUI | Handmade Andean Textiles | Alpaca Clothing Peru"
+        : "RUWAQ MAQUI | Tejidos Artesanales Andinos | Ropa de Alpaca Hecha a Mano"}
+      description={currentLang === "en"
+        ? "Buy authentic handmade Andean textiles at Ruwaq Maqui Peru. Alpaca shawls, sweaters, ponchos and accessories woven by rural women artisans. Traditional weaving, fair trade, natural wool. ✓ Free shipping ✓ Sustainable fashion"
+        : "Compra textiles artesanales andinos auténticos en Ruwaq Maqui Perú. Chalinas de alpaca, chompas, ponchos y accesorios tejidos a mano por mujeres del campo. Tejido tradicional, comercio justo, lana natural. ✓ Envío gratis ✓ Moda sostenible"}
       canonical="/"
-      keywords={currentLang === 'en'
-        ? "jewelry Peru, gold jewelry, silver jewelry, engagement rings, gold earrings, silver necklaces, bracelets Peru, online jewelry Lima, 18k gold Peru"
-        : "joyería Perú, joyas de oro, joyas de plata, anillos de compromiso, aretes de oro, collares de plata, pulseras Perú, joyería online Lima, oro 18k Perú"}
+      keywords={currentLang === "en"
+        ? "Andean textiles, alpaca clothing Peru, handmade sweaters, traditional weaving, artisan ponchos, fair trade clothing, alpaca wool shawls, sustainable fashion Peru, natural wool clothing"
+        : "tejidos artesanales andinos, ropa de alpaca Perú, artesanía peruana, textiles tradicionales, ponchos artesanales, moda sostenible, chalinas de alpaca, comercio justo, lana natural, mujeres artesanas"}
       lang={currentLang}
       structuredData={{
         "@context": "https://schema.org",
-        "@type": "JewelryStore",
-        "name": "ORO INCA Joyería",
-        "description": "Tienda online de joyas de oro y plata en Perú con envíos a nivel nacional",
-        "url": "https://oro-inca-joyeria.vercel.app/",
-        "logo": "https://oro-inca-joyeria.vercel.app/assets/img/logo.png",
-        "image": "https://oro-inca-joyeria.vercel.app/assets/img/og-image.jpg",
-        "priceRange": "$$",
-        "address": {
+        "@type": "Store",
+        name: "Ruwaq Maqui",
+        description:
+          "Tienda de textiles artesanales andinos tejidos a mano por mujeres del campo con lana de alpaca y oveja",
+        url: "https://oro-inca-joyeria.vercel.app/",
+        logo: "https://oro-inca-joyeria.vercel.app/assets/img/logo.png",
+        image: "https://oro-inca-joyeria.vercel.app/assets/img/og-image.jpg",
+        priceRange: "$$",
+        address: {
           "@type": "PostalAddress",
-          "addressCountry": "PE",
-          "addressLocality": "Lima"
+          addressCountry: "PE",
+          addressLocality: "Lima",
         },
-        "geo": {
+        geo: {
           "@type": "GeoCoordinates",
-          "latitude": "-12.046374",
-          "longitude": "-77.042793"
+          latitude: "-12.046374",
+          longitude: "-77.042793",
         },
-        "areaServed": {
+        areaServed: {
           "@type": "Country",
-          "name": "Perú"
+          name: "Perú",
         },
-        "currenciesAccepted": "PEN",
-        "paymentAccepted": "Tarjeta de crédito, débito, transferencia bancaria",
-        "openingHours": "Mo-Sa 09:00-20:00",
-        "telephone": "+51-XXX-XXX-XXX"
+        currenciesAccepted: "PEN",
+        paymentAccepted: "Tarjeta de crédito, débito, transferencia bancaria",
+        openingHours: "Mo-Sa 09:00-20:00",
+        telephone: "+51-XXX-XXX-XXX",
       }}
     />
 
@@ -74,7 +75,7 @@ const htmlLang = currentLang === 'en' ? 'en' : 'es-PE';
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
     <!-- Favicon optimizado -->
-     <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
@@ -83,11 +84,11 @@ const htmlLang = currentLang === 'en' ? 'en' : 'es-PE';
     <meta property="og:type" content="website" />
     <meta
       property="og:title"
-      content="ORO INCA Joyería | Joyas de Oro y Plata en Perú - Envío Nacional"
+      content="RUWAQ MAQUI | Tejidos Artesanales Andinos | Ropa de Alpaca"
     />
     <meta
       property="og:description"
-      content="Compra joyas de oro 18k y plata 925 en ORO INCA Joyería. Anillos, aretes, collares y pulseras con diseños exclusivos. Envío gratis a todo Perú. Precios accesibles y garantía."
+      content="Textiles artesanales andinos tejidos a mano con lana de alpaca y oveja. Chalinas, chompas, ponchos y accesorios hechos por mujeres del campo. Comercio justo y tradición ancestral."
     />
     <meta property="og:url" content="https://oro-inca-joyeria.vercel.app/" />
     <meta
@@ -98,20 +99,20 @@ const htmlLang = currentLang === 'en' ? 'en' : 'es-PE';
     <meta property="og:image:height" content="630" />
     <meta
       property="og:image:alt"
-      content="ORO INCA Joyería - Joyas de Oro y Plata en Perú"
+      content="Ruwaq Maqui - Textiles Artesanales Andinos"
     />
-    <meta property="og:site_name" content="ORO INCA Joyería" />
+    <meta property="og:site_name" content="Ruwaq Maqui" />
     <meta property="og:locale" content="es_PE" />
 
     <!-- Twitter Cards mejorado -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta
       name="twitter:title"
-      content="ORO INCA Joyería | Joyas de Oro y Plata en Perú"
+      content="RUWAQ MAQUI | Tejidos Artesanales Andinos de Perú"
     />
     <meta
       name="twitter:description"
-      content="Compra joyas de oro 18k y plata 925. Anillos, aretes, collares con envío gratis a todo Perú."
+      content="Textiles artesanales andinos tejidos a mano. Ropa de alpaca, comercio justo, mujeres artesanas."
     />
     <meta
       name="twitter:image"
@@ -119,18 +120,18 @@ const htmlLang = currentLang === 'en' ? 'en' : 'es-PE';
     />
     <meta
       name="twitter:image:alt"
-      content="ORO INCA Joyería - Colección de joyas"
+      content="Ruwaq Maqui - Colección de textiles artesanales"
     />
-    <meta name="twitter:site" content="@oro_incajoyeria" />
-    <meta name="twitter:creator" content="@oro_incajoyeria" />
+    <meta name="twitter:site" content="@ruwaqmaqui" />
+    <meta name="twitter:creator" content="@ruwaqmaqui" />
 
     <!-- Schema.org para SEO local -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "JewelryStore",
-        "name": "ORO INCA Joyería",
-        "description": "Tienda online de joyas de oro y plata en Perú con envíos a nivel nacional",
+        "@type": "Store",
+        "name": "Ruwaq Maqui",
+        "description": "Tienda de textiles artesanales andinos tejidos a mano por mujeres del campo con lana de alpaca y oveja",
         "url": "https://oro-inca-joyeria.vercel.app/",
         "logo": "https://oro-inca-joyeria.vercel.app/assets/img/logo.png",
         "image": "https://oro-inca-joyeria.vercel.app/assets/img/og-image.jpg",
@@ -161,20 +162,20 @@ const htmlLang = currentLang === 'en' ? 'en' : 'es-PE';
       {
         "@context": "https://schema.org",
         "@type": "Organization",
-        "name": "ORO INCA Joyería",
+        "name": "Ruwaq Maqui",
         "url": "https://oro-inca-joyeria.vercel.app/",
         "logo": "https://oro-inca-joyeria.vercel.app/assets/img/logo.png",
         "sameAs": [
-          "https://www.facebook.com/oroincajoyeria",
-          "https://www.instagram.com/oroincajoyeria",
-          "https://twitter.com/oro_incajoyeria"
+          "https://www.facebook.com/ruwaqmaqui",
+          "https://www.instagram.com/ruwaqmaqui",
+          "https://twitter.com/ruwaqmaqui"
         ],
         "contactPoint": {
           "@type": "ContactPoint",
           "telephone": "+51-XXX-XXX-XXX",
           "contactType": "Customer Service",
           "areaServed": "PE",
-          "availableLanguage": "Spanish"
+          "availableLanguage": ["Spanish", "English"]
         }
       }
     </script>

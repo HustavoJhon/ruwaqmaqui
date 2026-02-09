@@ -10,11 +10,11 @@ const { lang = "es" } = Astro.props;
 const t = useTranslations(lang as Language);
 ---
 
-<footer class="bg-[#0f1c2e] text-white pt-20">
+<footer class="bg-[#4e0301] text-white pt-20">
   <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-10">
     <!-- BRAND -->
     <div>
-      <h3 class="text-2xl font-bold text-[color:var(--gold)]">ORO INCA</h3>
+      <h3 class="text-2xl font-bold text-[#d4af37]">RUWAQ MAQUI</h3>
       <p class="text-sm text-white/70 mt-4">
         {t("footer.description")}
       </p>
@@ -70,7 +70,7 @@ const t = useTranslations(lang as Language);
       <a
         href="https://wa.me/51926946362"
         target="_blank"
-        class="inline-block mt-6 bg-[#d4af37] text-[#16273b] px-6 py-3 rounded-full font-semibold"
+        class="inline-block mt-6 bg-[#ac4a2a] hover:bg-[#8a3a20] text-white px-6 py-3 rounded-full font-semibold transition"
       >
         WhatsApp
       </a>
@@ -80,6 +80,6 @@ const t = useTranslations(lang as Language);
   <div
     class="mt-16 border-t border-white/10 text-center py-6 text-xs text-white/50"
   >
-    © {new Date().getFullYear()} ORO INCA Joyería. {t("footer.rights")}
+    © {new Date().getFullYear()} Ruwaq Maqui. {t("footer.rights")}
   </div>
 </footer>
