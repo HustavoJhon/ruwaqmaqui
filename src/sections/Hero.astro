@@ -12,8 +12,8 @@ const collectionLink = lang === "en" ? "/en/products" : "/products";
 const aboutLink = lang === "en" ? "/en/about" : "/nosotros";
 ---
 
-<section class="relative min-h-[87vh] overflow-hidden">
-  <!-- SLIDES -->
+<section class="relative min-h-[95vh] bg-[#f1ede1] overflow-hidden">
+  <!-- SLIDER DE FONDO (MISMO JS) -->
   <div class="absolute inset-0">
     {
       HERO_IMAGES.map((img, i) => (
@@ -25,45 +25,42 @@ const aboutLink = lang === "en" ? "/en/about" : "/nosotros";
     }
   </div>
 
-  <!-- OVERLAY -->
-  <div
-    class="absolute inset-0 bg-gradient-to-b from-ink/98 via-ink/95 to-ink/98"
-  >
-  </div>
+  <!-- OVERLAY SUAVE -->
+  <div class="absolute inset-0 bg-[#f1ede1]/85"></div>
 
   <!-- CONTENIDO -->
-  <div
-    class="relative z-10 max-w-7xl mx-auto px-6 min-h-[85vh] flex items-center"
-  >
-    <div class="max-w-xl space-y-8">
-      <!-- Badge -->
+  <div class="relative z-10 max-w-7xl mx-auto px-6 pt-32">
+    <div class="max-w-xl space-y-6">
       <span
-        class="inline-block text-xs tracking-widest uppercase text-[#d4af37] bg-[#d4af37]/10 px-4 py-2 rounded-full"
+        class="inline-block text-xs uppercase tracking-widest text-[#ac4a2a]"
       >
         {t("hero.badge")}
       </span>
 
-      <!-- Título -->
-      <h1 class="text-5xl md:text-6xl font-bold leading-tight text-white">
-          ARTESANIA <span class="block text-[#d4af37]">{t("hero.subtitle")}</span>
+      <h1
+        class="text-4xl md:text-5xl font-semibold text-[#4e0301] leading-tight"
+      >
+        Artesanía textil andina
+        <span class="block font-normal text-[#ac4a2a]">
+          hecha a mano por mujeres del campo
+        </span>
       </h1>
 
-      <!-- Descripción -->
-      <p class="text-white/80 text-lg leading-relaxed">
+      <p class="text-[#4e0301]/80 text-lg leading-relaxed">
         {t("hero.description")}
       </p>
 
-      <!-- CTAs -->
-      <div class="flex flex-wrap gap-4 pt-4">
+      <div class="flex gap-4 pt-4">
         <a
           href={collectionLink}
-          class="inline-flex items-center justify-center bg-[#d4af37] text-[#16273b] px-7 py-3 rounded-full font-semibold text-sm tracking-wide hover:bg-[#b5952f] transition transform hover:-translate-y-0.5"
+          class="bg-[#ac4a2a] text-[#f1ede1] px-7 py-3 rounded-full text-sm font-medium hover:bg-[#4e0301] transition"
         >
           {t("hero.ctaCollection")}
         </a>
+
         <a
           href={aboutLink}
-          class="inline-flex items-center justify-center border border-white/20 text-white px-7 py-3 rounded-full font-semibold text-sm tracking-wide hover:bg-white/10 transition transform hover:-translate-y-0.5"
+          class="border border-[#ac4a2a] text-[#ac4a2a] px-7 py-3 rounded-full text-sm font-medium hover:bg-[#ac4a2a]/10 transition"
         >
           {t("hero.ctaStory")}
         </a>
@@ -71,17 +68,92 @@ const aboutLink = lang === "en" ? "/en/about" : "/nosotros";
     </div>
   </div>
 
-  <!-- FOOTER/FEATURES DECORATIVO -->
-  <div
-    class="absolute bottom-0 left-0 right-0 z-20 border-t border-white/10 bg-ink/50 backdrop-blur-sm"
-  >
-    <div class="max-w-7xl mx-auto px-6 py-6">
-      <div
-        class="grid grid-cols-3 gap-4 text-center text-white/60 text-xs md:text-sm uppercase tracking-widest"
-      >
-        <div>{t("hero.feature1")}</div>
-        <div class="border-l border-white/10">{t("hero.feature2")}</div>
-        <div class="border-l border-white/10">{t("hero.feature3")}</div>
+  <!-- BARRA DE CONFIANZA (como la imagen) -->
+  <div class="relative z-10 max-w-7xl mx-auto px-6 mt-20">
+    <div
+      class="grid grid-cols-2 md:grid-cols-4 gap-4 bg-white/70 backdrop-blur rounded-2xl px-6 py-4 text-[#4e0301]"
+    >
+      <!-- Item -->
+      <div class="flex items-center gap-3">
+        <svg
+          class="w-6 h-6 text-[#7a2e1c]"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M7 11V6a2 2 0 114 0v5M11 11V4a2 2 0 114 0v7M15 11V7a2 2 0 114 0v6a6 6 0 01-6 6H9a4 4 0 01-4-4v-2a2 2 0 114 0v2"
+          ></path>
+        </svg>
+        <div class="leading-tight">
+          <strong class="block text-sm">Hecho a mano</strong>
+          <span class="text-xs opacity-80">Trabajo artesanal</span>
+        </div>
+      </div>
+
+      <!-- Item -->
+      <div class="flex items-center gap-3">
+        <svg
+          class="w-6 h-6 text-[#7a2e1c]"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M3 20l7-12 4 6 3-4 4 10H3z"></path>
+        </svg>
+        <div class="leading-tight">
+          <strong class="block text-sm">Andes</strong>
+          <span class="text-xs opacity-80">Origen ancestral</span>
+        </div>
+      </div>
+
+      <!-- Item -->
+      <div class="flex items-center gap-3">
+        <svg
+          class="w-6 h-6 text-[#7a2e1c]"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M12 3c-4.5 0-8 3.5-8 8 0 3.5 2 6 5 7v3h6v-3c3-1 5-3.5 5-7 0-4.5-3.5-8-8-8z"
+          ></path>
+        </svg>
+        <div class="leading-tight">
+          <strong class="block text-sm">Lana natural</strong>
+          <span class="text-xs opacity-80">Alpaca y oveja</span>
+        </div>
+      </div>
+
+      <!-- Item -->
+      <div class="flex items-center gap-3">
+        <svg
+          class="w-6 h-6 text-[#7a2e1c]"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M17 20h5v-2a4 4 0 00-4-4h-1M9 20H4v-2a4 4 0 014-4h1m8-4a4 4 0 11-8 0 4 4 0 018 0z"
+          ></path>
+        </svg>
+        <div class="leading-tight">
+          <strong class="block text-sm">Comunidad</strong>
+          <span class="text-xs opacity-80">Comercio justo</span>
+        </div>
       </div>
     </div>
   </div>
@@ -90,10 +162,11 @@ const aboutLink = lang === "en" ? "/en/about" : "/nosotros";
 <style>
   .hero-slide {
     opacity: 0;
-    transition: opacity 1.5s ease-in-out;
+    transition: opacity 2.5s ease-in-out;
   }
+
   .hero-slide.active {
-    opacity: 0.6; /* Ajusta la opacidad de la imagen de fondo */
+    opacity: 0.35;
   }
 </style>
 
