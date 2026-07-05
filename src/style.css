@@ -1,0 +1,29 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: sans-serif;
+  padding: 2rem;
+}
+
+nav a {
+  margin-right: 0.5rem;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-width: 300px;
+  margin-top: 1rem;
+}
+
+input,
+button {
+  padding: 0.5rem;
+}
